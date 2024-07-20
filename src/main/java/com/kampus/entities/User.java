@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 /**
- * Zeynep Abiddin Aydar 20/07/2024
+ * Zeynep Aydar 20/07/2024
  * */
 
 @Data
@@ -23,7 +24,8 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "user_seq",sequenceName = "user_id_seq",allocationSize = 1)
     @Column(name = "user_id",unique = true,nullable = false)
     private UUID userId;
 
@@ -58,18 +60,25 @@ public class User {
     @Column(name = "roles",nullable = false)
     private String roles;
 
-    /*
+
     @ManyToOne
     @JoinColumn(name="university_id")
-    private University university;
+    private Universities university;
 
     @ManyToOne
     @JoinColumn(name="major_id")
-    private Major major;
+    private Majors major;
+    // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
+    // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir
+    // bir hobide birden fazla kullanıcı tarafından  kullanılabilir.
+    @ManyToMany
+    @JoinTable(
+            name = "UserInterests",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "interest_id")
+    )
+    private Set<Interests> interests;
 
-
-
-    */
     @Column(name = "permissions")
     private String permissions;
 
