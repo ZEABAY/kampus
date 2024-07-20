@@ -6,6 +6,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
+/**
+ * Zeynel Abiddin Aydar 20/07/2024
+ * */
+
 @Service
 @AllArgsConstructor
 public class ModelMapperManager implements ModelMapperService {
