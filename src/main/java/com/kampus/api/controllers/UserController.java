@@ -2,10 +2,10 @@ package com.kampus.api.controllers;
 
 import com.kampus.core.api.controllers.BaseController;
 import com.kampus.service.concretes.UserService;
-import com.kampus.service.requests.CreateUserRequest;
-import com.kampus.service.requests.UpdateUserRequest;
-import com.kampus.service.responses.GetAllUsersByIdResponse;
-import com.kampus.service.responses.GetUserByIdResponse;
+import com.kampus.service.requests.userRequests.CreateUserRequest;
+import com.kampus.service.requests.userRequests.UpdateUserRequest;
+import com.kampus.service.responses.userResponses.GetAllUsersResponse;
+import com.kampus.service.responses.userResponses.GetUserByIdResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +16,14 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/user")
-public class UserController implements BaseController<CreateUserRequest, UUID, GetUserByIdResponse, GetAllUsersByIdResponse, UpdateUserRequest> {
-    private final UserService brandService;
+public class UserController implements BaseController<CreateUserRequest, UUID, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
+    private final UserService userService;
 
     @Override
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void create(CreateUserRequest createUserRequest) {
-
+        userService.add(createUserRequest);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class UserController implements BaseController<CreateUserRequest, UUID, G
 
     @Override
     @GetMapping("/getALl")
-    public List<GetAllUsersByIdResponse> getAll() {
+    public List<GetAllUsersResponse> getAll() {
         return List.of();
     }
 
