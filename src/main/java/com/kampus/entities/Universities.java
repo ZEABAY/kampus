@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Zeynep  Aydar 20/07/2024
+ * Furkan Ayhan Gülekoğlu 20/07/2024
  * */
 
 @Data

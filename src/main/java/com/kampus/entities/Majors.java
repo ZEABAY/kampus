@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Zeynep Aydar 20/07/2024
+ * Furkan Ayhan Gülekoğlu 20/07/2024
  * */
 
 @Data

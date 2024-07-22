@@ -6,14 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
 /**
- * Zeynep Aydar 20/07/2024
+ * Furkan Ayhan Gülekoğlu 20/07/2024
  * */
 
 @Data
