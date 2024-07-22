@@ -7,7 +7,7 @@ import java.util.UUID;
 
 
 /**
- * Zeynel Abiddin Aydar 20/07/2024
+
  * */
 public interface UserRepository extends JpaRepository<User, UUID> {
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Furkan Ayhan Gülekoğlu 20/07/2024
+
  * */
 
 @Data

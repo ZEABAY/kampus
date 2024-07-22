@@ -5,12 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.UUID;
-
 /**
- * Furkan Ayhan Gülekoğlu 20/07/2024
+
  * */
 
 @Data

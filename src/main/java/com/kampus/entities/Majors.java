@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Furkan Ayhan Gülekoğlu 20/07/2024
+
  * */
 
 @Data
