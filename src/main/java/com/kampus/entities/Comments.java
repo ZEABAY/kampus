@@ -1,13 +1,7 @@
 package com.kampus.entities;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-//E
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
 @Entity
 @Table(name = "Comments")
 public class Comments {

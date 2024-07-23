@@ -1,14 +1,11 @@
 package com.kampus.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
-
-/**
-
- * */
 
 @Data
 @AllArgsConstructor
@@ -18,7 +15,7 @@ import java.util.Set;
 public class Interests {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="ınterests_seq",sequenceName = "interests_id_seq",allocationSize = 1)
+    @SequenceGenerator(name = "ınterests_seq", sequenceName = "interests_id_seq", allocationSize = 1)
     @Column(name = "interest_id")
     private int interestId;
 
@@ -27,6 +24,7 @@ public class Interests {
 
     @Column(name = "interest_type")
     private String interestType;
+
     // buda user tarafı
     @ManyToMany(mappedBy = "interests")
     private Set<User> users;

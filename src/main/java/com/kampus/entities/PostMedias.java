@@ -1,15 +1,12 @@
 package com.kampus.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-//
+
 
 @Data
 @AllArgsConstructor
@@ -31,7 +28,7 @@ public class PostMedias {
     @Column(name = "media_url", nullable = false)
     private String mediaUrl;
 
-    @Column(name = "created_at",nullable = false)
+    @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 }

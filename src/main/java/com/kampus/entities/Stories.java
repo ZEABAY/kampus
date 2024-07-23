@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
-//E
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,18 +13,18 @@ import java.util.UUID;
 public class Stories {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "stories_seq",sequenceName = "stories_id_seq",allocationSize = 1)
+    @SequenceGenerator(name = "stories_seq", sequenceName = "stories_id_seq", allocationSize = 1)
     @Column(name = "stories_id")
     private Long storiesId;
 
     @ManyToOne
-    @JoinColumn(name="user_id",referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     @Column(name = "story_type")
     private String storyType;
 
-    @Column(name="story_url")
+    @Column(name = "story_url")
     private String url;
 
 

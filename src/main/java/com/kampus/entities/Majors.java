@@ -1,12 +1,9 @@
 package com.kampus.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
-
- * */
 
 @Data
 @AllArgsConstructor
@@ -20,7 +17,7 @@ public class Majors {
     @Column(name = "major_id")
     private int major_id;
 
-    @Column(name="major_name")
+    @Column(name = "major_name")
     private String majorName;
 
 }

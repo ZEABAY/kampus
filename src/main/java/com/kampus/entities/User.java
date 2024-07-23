@@ -10,11 +10,6 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
-
-/**
-N
- * */
 
 @Data
 @AllArgsConstructor
@@ -25,26 +20,26 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "user_seq",sequenceName = "user_id_seq",allocationSize = 1)
-    @Column(name = "user_id",unique = true,nullable = false)
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_id_seq", allocationSize = 1)
+    @Column(name = "user_id", unique = true, nullable = false)
     private Long userId;
 
-    @Column(name="user_name",nullable = false)
+    @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name="mail",nullable = false)
+    @Column(name = "mail", nullable = false)
     private String mail;
 
-    @Column(name="first_name", nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name="last_name",nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name="birth_date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
     // dd.MM.yyyy
 
@@ -54,19 +49,19 @@ public class User {
     @Column(name = "profile_pic_url")
     private String profilePicUrl;
 
-    @Column (name = "avatar_url")
+    @Column(name = "avatar_url")
     private String avatarUrl;
 
-    @Column(name = "roles",nullable = false)
+    @Column(name = "roles", nullable = false)
     private String roles;
 
 
     @ManyToOne
-    @JoinColumn(name="university_id")
+    @JoinColumn(name = "university_id")
     private Universities university;
 
     @ManyToOne
-    @JoinColumn(name="major_id")
+    @JoinColumn(name = "major_id")
     private Majors major;
     // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
     // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir
@@ -85,21 +80,21 @@ public class User {
     @Column(name = "permissions")
     private String permissions;
 
-    @Column(name= "is_private")
+    @Column(name = "is_private")
     private Boolean isPrivate;
 
-    @Column(name = "created_at",nullable = false)
+    @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "updated_at",nullable = false)
+    @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @Column(name="current_situation")
+    @Column(name = "current_situation")
     private String currentSituation;
 
-    @Column(name = "status",nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 
 

@@ -1,16 +1,15 @@
 package com.kampus.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
-//Y
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,12 +18,12 @@ import java.util.UUID;
 public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="posts_seq",sequenceName = "posts_id_seq",allocationSize = 1)
+    @SequenceGenerator(name = "posts_seq", sequenceName = "posts_id_seq", allocationSize = 1)
     @Column(name = "post_id")
     Long postId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     @Column(name = "content_type")
@@ -52,17 +51,13 @@ public class Posts {
     private Integer commentCount = 0;
 
 
-    @Column(name = "created_at",nullable = false)
+    @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "updated_at",nullable = false)
+    @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-
-
-
-
 
 
 }
