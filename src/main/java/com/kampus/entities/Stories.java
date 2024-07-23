@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-
+//E
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +18,7 @@ public class Stories {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "stories_seq",sequenceName = "stories_id_seq",allocationSize = 1)
     @Column(name = "stories_id")
-    private UUID storiesId;
+    private Long storiesId;
 
     @ManyToOne
     @JoinColumn(name="user_id",referencedColumnName = "user_id")

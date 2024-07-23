@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 /**
-
+N
  * */
 
 @Data
@@ -26,7 +27,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_seq",sequenceName = "user_id_seq",allocationSize = 1)
     @Column(name = "user_id",unique = true,nullable = false)
-    private UUID userId;
+    private Long userId;
 
     @Column(name="user_name",nullable = false)
     private String userName;
@@ -77,6 +78,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
     private Set<Interests> interests;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PostLikes> postLikes = new HashSet<>();
 
     @Column(name = "permissions")
     private String permissions;

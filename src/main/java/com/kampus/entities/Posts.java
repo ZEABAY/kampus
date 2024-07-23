@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-
+//Y
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class Posts {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="posts_seq",sequenceName = "posts_id_seq",allocationSize = 1)
     @Column(name = "post_id")
-    UUID postId;
+    Long postId;
 
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "user_id")
@@ -31,11 +33,25 @@ public class Posts {
     @Column(name = "text_content")
     private String textContent;
 
-    /*
-     LİKE COUNT
-     COMMENT COUNT
 
+    /*
+    bir Post nesnesi silindiğinde, ona bağlı tüm PostLikes nesnelerinin de otomatik olarak silineceğini belirtir.
+    db deki cascade mantığı
      */
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PostLikes> likes = new HashSet<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comments> comments;
+
+
+    @Column(name = "like_count", nullable = false)
+    private Integer likeCount = 0;
+
+    @Column(name = "comment_count", nullable = false)
+    private Integer commentCount = 0;
+
+
     @Column(name = "created_at",nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;

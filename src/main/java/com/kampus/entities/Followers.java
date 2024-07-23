@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-
+//Z
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +19,7 @@ public class Followers {
     @GeneratedValue(strategy = GenerationType.SEQUENCE )
     @SequenceGenerator(name = "followers_seq",sequenceName = "followers_id_seq")
     @Column(name= "followers_id")
-    private UUID followersId;
+    private Long followersId;
 
     @ManyToOne
     @JoinColumn(name = "follower_id",referencedColumnName = "user_id")
