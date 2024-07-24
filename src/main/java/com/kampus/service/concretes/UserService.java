@@ -8,26 +8,28 @@ import com.kampus.service.requests.userRequests.CreateUserRequest;
 import com.kampus.service.requests.userRequests.UpdateUserRequest;
 import com.kampus.service.responses.userResponses.GetAllUsersResponse;
 import com.kampus.service.responses.userResponses.GetUserByIdResponse;
+import com.kampus.service.rules.UserBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Zeynel Abiddin Aydar 20/07/2024
- */
+
 @Service
 @AllArgsConstructor
 public class UserService implements BaseService<CreateUserRequest, UUID, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
     private final UserRepository userRepository;
     private final ModelMapperService modelMapperService;
+    private final UserBusinessRules userBusinessRules;
 
     @Override
     public void add(CreateUserRequest createUserRequest) {
         User user = this.modelMapperService.forRequest().map(createUserRequest, User.class);
 
         //İş kulları
+        this.userBusinessRules.checkIfUsernameExists(createUserRequest.getUsername());
+
 
         this.userRepository.save(user);
     }

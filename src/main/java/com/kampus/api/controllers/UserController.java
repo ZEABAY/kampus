@@ -6,6 +6,7 @@ import com.kampus.service.requests.userRequests.CreateUserRequest;
 import com.kampus.service.requests.userRequests.UpdateUserRequest;
 import com.kampus.service.responses.userResponses.GetAllUsersResponse;
 import com.kampus.service.responses.userResponses.GetUserByIdResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,13 @@ public class UserController implements BaseController<CreateUserRequest, UUID, G
     @Override
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void create(CreateUserRequest createUserRequest) {
+    public void create(@RequestBody() @Valid() CreateUserRequest createUserRequest) {
         userService.add(createUserRequest);
     }
 
     @Override
     @GetMapping("/{id}")
-    public GetUserByIdResponse getById(@PathVariable UUID id) {
+    public GetUserByIdResponse getById(@PathVariable() UUID id) {
         return null;
     }
 
@@ -40,7 +41,7 @@ public class UserController implements BaseController<CreateUserRequest, UUID, G
 
     @Override
     @PutMapping("/update")
-    public void update(@RequestBody UpdateUserRequest updateUserRequest) {
+    public void update(@RequestBody() UpdateUserRequest updateUserRequest) {
     }
 
     @Override
