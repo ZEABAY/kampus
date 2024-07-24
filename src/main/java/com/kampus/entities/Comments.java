@@ -6,15 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "Comments")
 public class Comments {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "comments_seq")
+    @SequenceGenerator(name = "comments_seq",sequenceName = "comments_id_seq",allocationSize = 1)
     private Long commentId;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
+    @JoinColumn(name = "post_id", nullable = false,referencedColumnName = "post_id")
     private Posts post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
     private User user;
 
     @Column(name = "text_content")

@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "Posts")
 public class Posts {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "posts_seq")
     @SequenceGenerator(name = "posts_seq", sequenceName = "posts_id_seq", allocationSize = 1)
     @Column(name = "post_id")
     Long postId;

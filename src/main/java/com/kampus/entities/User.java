@@ -19,7 +19,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "user_id_seq", allocationSize = 1)
     @Column(name = "user_id", unique = true, nullable = false)
     private Long userId;
@@ -61,7 +61,7 @@ public class User {
     private Universities university;
 
     @ManyToOne
-    @JoinColumn(name = "major_id")
+    @JoinColumn(name = "major_id",referencedColumnName = "major_id")
     private Majors major;
     // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
     // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir

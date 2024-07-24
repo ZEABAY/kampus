@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Table(name = "Followers")
 public class Followers {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "followers_seq")
     @SequenceGenerator(name = "followers_seq", sequenceName = "followers_id_seq")
     @Column(name = "followers_id")
     private Long followersId;

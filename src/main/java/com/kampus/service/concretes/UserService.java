@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserService implements BaseService<CreateUserRequest, UUID, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
+public class UserService implements BaseService<CreateUserRequest, Long, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
     private final UserRepository userRepository;
     private final ModelMapperService modelMapperService;
     private final UserBusinessRules userBusinessRules;
@@ -35,7 +35,7 @@ public class UserService implements BaseService<CreateUserRequest, UUID, GetUser
     }
 
     @Override
-    public GetUserByIdResponse getById(UUID id) {
+    public GetUserByIdResponse getById(Long id) {
         User user = this.userRepository.findById(id).orElse(null);
 
         GetUserByIdResponse response = this.modelMapperService.forResponse()
@@ -61,7 +61,7 @@ public class UserService implements BaseService<CreateUserRequest, UUID, GetUser
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(Long id) {
         this.userRepository.deleteById(id);
     }
 }

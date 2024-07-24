@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Stories")
 public class Stories {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "stories_seq")
     @SequenceGenerator(name = "stories_seq", sequenceName = "stories_id_seq", allocationSize = 1)
     @Column(name = "stories_id")
     private Long storiesId;

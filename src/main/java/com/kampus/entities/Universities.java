@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class Universities {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "universities_seq")
     @SequenceGenerator(name = "universities_seq", sequenceName = "universities_id_seq", allocationSize = 1)
     @Column(name = "university_id", nullable = false)
     private int universityID;
@@ -22,6 +22,6 @@ public class Universities {
     private String universityName;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "city_id",referencedColumnName = "city_id")
     private Cities city;
 }

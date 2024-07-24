@@ -15,11 +15,12 @@ import java.util.Date;
 @Table(name = "PostMedias")
 public class PostMedias {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postmedias_seq")
+    @SequenceGenerator(name="postmedias_seq",sequenceName = "postmedias_id_seq",allocationSize = 1)
     private Long mediaId;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
+    @JoinColumn(name = "post_id", nullable = false,referencedColumnName = "post_id")
     private Posts post;
 
     @Column(name = "media_type", nullable = false)

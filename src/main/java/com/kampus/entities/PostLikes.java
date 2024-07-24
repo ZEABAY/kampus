@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "PostLikes")
 public class PostLikes {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postlikes_seq")
     @SequenceGenerator(name = "postlikes_seq", sequenceName = "postlikes_id_seq", allocationSize = 1)
     @Column(name = "like_id")
     private Long likeId;
@@ -24,7 +24,7 @@ public class PostLikes {
     private Posts post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
     private User user;
 
 
