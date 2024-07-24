@@ -13,7 +13,7 @@ public class UserBusinessRules {
     private final UserRepository userRepository;
 
     public void checkIfUsernameExists(String username) {
-        if (this.userRepository.existsByUsername(username)) {
+        if (this.userRepository.existsByUserName(username)) {
             throw new BusinessException("This username is already taken");
         }
     }
