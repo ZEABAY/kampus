@@ -2,6 +2,8 @@ package com.kampus.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "Comments")
 public class Comments {
@@ -21,7 +23,6 @@ public class Comments {
     @Column(name = "text_content")
     private String textContent;
 
-    @Column(name = "like_count", nullable = false)
-    private Integer likeCount = 0;
-
+    @OneToMany(mappedBy = "comments", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CommentLikes> likes;
 }
