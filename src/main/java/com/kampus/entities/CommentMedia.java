@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "CommentMedias")
-public class CommentMedias {
+public class CommentMedia {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "commentmedias_seq")
     @SequenceGenerator(name="commentmedias_seq",sequenceName = "commentmedias_id_seq",allocationSize = 1)
@@ -20,7 +20,7 @@ public class CommentMedias {
 
     @ManyToOne
     @JoinColumn(name = "comment_id", nullable = false,referencedColumnName = "comment_id")
-    private Comments comments;
+    private Comment comment;
 
     @Column(name = "media_type", nullable = false)
     private String mediaType;

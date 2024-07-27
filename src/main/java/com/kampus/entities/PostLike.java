@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "PostLikes")
-public class PostLikes {
+public class PostLike {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postlikes_seq")
     @SequenceGenerator(name = "postlikes_seq", sequenceName = "postlikes_id_seq", allocationSize = 1)
@@ -21,7 +21,7 @@ public class PostLikes {
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
-    private Posts post;
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")

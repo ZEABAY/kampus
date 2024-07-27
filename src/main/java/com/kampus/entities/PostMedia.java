@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "PostMedias")
-public class PostMedias {
+public class PostMedia {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postmedias_seq")
     @SequenceGenerator(name="postmedias_seq",sequenceName = "postmedias_id_seq",allocationSize = 1)
@@ -21,7 +21,7 @@ public class PostMedias {
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false,referencedColumnName = "post_id")
-    private Posts post;
+    private Post post;
 
     @Column(name = "media_type", nullable = false)
     private String mediaType;

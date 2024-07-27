@@ -1,11 +1,12 @@
 package com.kampus.entities;
+import com.kampus.core.utilities.enums.ContentType;
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "Replies")
-public class Replies {
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "reply_seq")
     @SequenceGenerator(name = "reply_seq",sequenceName = "reply_id_seq",allocationSize = 1)
@@ -17,7 +18,7 @@ public class Replies {
 
     @ManyToOne
     @JoinColumn(name = "comment_id", nullable = false,referencedColumnName = "comment_id")
-    private Comments comments;
+    private Comment comment;
 
     @Column(name = "like_count", nullable = false)
     private Integer likeCount = 0;

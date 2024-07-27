@@ -1,4 +1,4 @@
-package com.kampus.entities;
+package com.kampus.core.utilities.enums;
 
 public enum ContentType {
     TEXT,

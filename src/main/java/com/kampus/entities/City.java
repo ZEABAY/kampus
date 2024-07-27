@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "Cities")
-public class Cities {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "cities_seq")
     @SequenceGenerator(name = "cities_seq", sequenceName = "cities_id_seq", allocationSize = 1)

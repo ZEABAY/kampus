@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity
 @Table(name = "Followers")
-public class Followers {
+public class Follower {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "followers_seq")
     @SequenceGenerator(name = "followers_seq", sequenceName = "followers_id_seq")

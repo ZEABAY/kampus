@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "Majors")
-public class Majors {
+public class Major {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "majors_seq")
     @SequenceGenerator(name = "majors_seq", sequenceName = "majors_id_seq", allocationSize = 1)

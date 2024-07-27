@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Comments")
-public class Comments {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "comments_seq")
     @SequenceGenerator(name = "comments_seq",sequenceName = "comments_id_seq",allocationSize = 1)
@@ -14,7 +14,7 @@ public class Comments {
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false,referencedColumnName = "post_id")
-    private Posts post;
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
@@ -24,5 +24,5 @@ public class Comments {
     private String textContent;
 
     @OneToMany(mappedBy = "comments", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CommentLikes> likes;
+    private Set<CommentLike> likes;
 }

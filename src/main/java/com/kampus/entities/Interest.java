@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "Interests")
-public class Interests {
+public class Interest {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "interest_seq")
     @SequenceGenerator(name = "ınterests_seq", sequenceName = "interests_id_seq", allocationSize = 1)

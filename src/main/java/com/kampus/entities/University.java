@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "Universities")
 
-public class Universities {
+public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "universities_seq")
     @SequenceGenerator(name = "universities_seq", sequenceName = "universities_id_seq", allocationSize = 1)
@@ -23,5 +23,5 @@ public class Universities {
 
     @ManyToOne
     @JoinColumn(name = "city_id",referencedColumnName = "city_id")
-    private Cities city;
+    private City city;
 }
