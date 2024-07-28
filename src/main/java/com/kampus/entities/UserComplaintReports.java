@@ -19,11 +19,11 @@ public class UserComplaintReports {
 
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
-    private Posts post;
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
-    private Comments comments;
+    private Comment comments;
 
     /*
     @ManyToOne
@@ -32,7 +32,7 @@ public class UserComplaintReports {
      */
     @ManyToOne
     @JoinColumn(name = "reply_id", referencedColumnName = "reply_id")
-    private Replies replies;
+    private Reply replies;
 
     @ManyToOne
     @JoinColumn(name = "reporter_id", nullable = false, referencedColumnName = "user_id")
