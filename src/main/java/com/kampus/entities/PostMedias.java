@@ -17,6 +17,7 @@ public class PostMedias {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postmedias_seq")
     @SequenceGenerator(name="postmedias_seq",sequenceName = "postmedias_id_seq",allocationSize = 1)
+    @Column(name = "media_id", unique = true, nullable = false)
     private Long mediaId;
 
     @ManyToOne
@@ -31,5 +32,5 @@ public class PostMedias {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date createdAt = new Date();
 }

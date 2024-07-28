@@ -16,7 +16,7 @@ public class PostLikes {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postlikes_seq")
     @SequenceGenerator(name = "postlikes_seq", sequenceName = "postlikes_id_seq", allocationSize = 1)
-    @Column(name = "like_id")
+    @Column(name = "like_id", unique =true, nullable = false)
     private Long likeId;
 
     @ManyToOne
@@ -30,6 +30,6 @@ public class PostLikes {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date createdAt = new Date();
 
 }

@@ -9,6 +9,7 @@ public class Replies {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "reply_seq")
     @SequenceGenerator(name = "reply_seq",sequenceName = "reply_id_seq",allocationSize = 1)
+    @Column(name = "reply_id", unique = true, nullable = false)
     private Long replyId;
 
     @ManyToOne

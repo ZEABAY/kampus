@@ -27,7 +27,8 @@ public class UserVerification {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date createdAt = new Date();
+
 
     @Column(name = "have_used",nullable = false)
     private Boolean haveUsed = false;

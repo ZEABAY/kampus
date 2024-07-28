@@ -16,6 +16,7 @@ public class CommentMedias {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "commentmedias_seq")
     @SequenceGenerator(name="commentmedias_seq",sequenceName = "commentmedias_id_seq",allocationSize = 1)
+    @Column(name = "media_id", unique = true, nullable = false)
     private Long mediaId;
 
     @ManyToOne
@@ -30,5 +31,5 @@ public class CommentMedias {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date createdAt = new Date();
 }

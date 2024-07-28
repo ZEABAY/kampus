@@ -2,6 +2,7 @@ package com.kampus.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,7 @@ public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "comments_seq")
     @SequenceGenerator(name = "comments_seq",sequenceName = "comments_id_seq",allocationSize = 1)
+    @Column(name = "comment_id", unique = true, nullable = false)
     private Long commentId;
 
     @ManyToOne
@@ -25,4 +27,8 @@ public class Comments {
 
     @OneToMany(mappedBy = "comments", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CommentLikes> likes;
+
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date();
 }

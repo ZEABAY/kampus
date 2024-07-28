@@ -19,7 +19,7 @@ public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "posts_seq")
     @SequenceGenerator(name = "posts_seq", sequenceName = "posts_id_seq", allocationSize = 1)
-    @Column(name = "post_id")
+    @Column(name = "post_id",nullable = false,unique = true)
     Long postId;
 
     @ManyToOne
@@ -53,11 +53,11 @@ public class Posts {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    private Date updatedAt = new Date();
 
 
 }

@@ -14,7 +14,7 @@ public class Majors {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "majors_seq")
     @SequenceGenerator(name = "majors_seq", sequenceName = "majors_id_seq", allocationSize = 1)
-    @Column(name = "major_id")
+    @Column(name = "major_id",unique = true,nullable = false)
     private int majorId;
 
     @Column(name = "major_name")

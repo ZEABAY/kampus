@@ -9,7 +9,7 @@ public class CommentLikes {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "commentlikes_seq")
     @SequenceGenerator(name = "commentlikes_seq",sequenceName = "commentslikes_id_seq",allocationSize = 1)
-    @Column(name = "like_id")
+    @Column(name = "like_id", unique = true, nullable = false)
     private Long likeId;
 
     @ManyToOne
@@ -20,8 +20,8 @@ public class CommentLikes {
     @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
     private User user;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    private Date createdAt = new Date();
 
 }
