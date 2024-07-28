@@ -3,11 +3,10 @@ package com.kampus.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "UserComplaintReports")
-public class UserComplaintReports {
+public class UserComplaintReport {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_complaint_reports_seq")
     @SequenceGenerator(name = "user_complaint_reports_seq", sequenceName = "user_complaint_reports_id_seq", allocationSize = 1)

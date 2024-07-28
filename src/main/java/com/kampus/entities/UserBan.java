@@ -3,11 +3,10 @@ package com.kampus.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "UserBans")
-public class UserBans {
+public class UserBan {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_bans_seq")
     @SequenceGenerator(name = "user_bans_seq", sequenceName = "user_bans_id_seq", allocationSize = 1)
@@ -16,7 +15,7 @@ public class UserBans {
 
     @ManyToOne
     @JoinColumn(name = "report_id", referencedColumnName = "report_id")
-    private UserComplaintReports userComplaintReports;
+    private UserComplaintReport userComplaintReport;
 
     @ManyToOne
     @JoinColumn(name = "banned_user_id", referencedColumnName = "user_id")

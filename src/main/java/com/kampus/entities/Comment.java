@@ -25,7 +25,7 @@ public class Comment {
     @Column(name = "text_content")
     private String textContent;
 
-    @OneToMany(mappedBy = "comments", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CommentLike> likes;
 
     @Column(name = "created_at", nullable = false)

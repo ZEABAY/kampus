@@ -12,12 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/user")
-public class UserController implements BaseController<CreateUserRequest, UUID, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
+public class UserController implements BaseController<CreateUserRequest, Long, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
     private final UserService userService;
 
     @Override
@@ -29,7 +28,7 @@ public class UserController implements BaseController<CreateUserRequest, UUID, G
 
     @Override
     @GetMapping("/{id}")
-    public GetUserByIdResponse getById(@PathVariable() UUID id) {
+    public GetUserByIdResponse getById(@PathVariable() Long id) {
         return null;
     }
 
@@ -47,6 +46,6 @@ public class UserController implements BaseController<CreateUserRequest, UUID, G
     @Override
     @DeleteMapping("delete/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable Long id) {
     }
 }
