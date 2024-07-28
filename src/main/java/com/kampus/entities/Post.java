@@ -32,11 +32,6 @@ public class Post {
     @Column(name = "text_content")
     private String textContent;
 
-
-    /*
-    bir Post nesnesi silindiğinde, ona bağlı tüm PostLikes nesnelerinin de otomatik olarak silineceğini belirtir.
-    db deki cascade mantığı
-     */
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PostLike> likes = new HashSet<>();
 
@@ -53,11 +48,11 @@ public class Post {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt ;
 
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt = new Date();
+    private Date updatedAt ;
 
 
 }

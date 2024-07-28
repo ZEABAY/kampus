@@ -1,9 +1,16 @@
 package com.kampus.entities;
 
+import com.kampus.core.utilities.enums.ContentType;
+import com.kampus.core.utilities.enums.ReportType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "UserComplaintReports")
 public class UserComplaintReport {
@@ -13,8 +20,10 @@ public class UserComplaintReport {
     @Column(name = "report_id", unique = true, nullable = false)
     private Long reportId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "report_type", nullable = false)
-    private String reportType;
+    private ReportType reportType;
+
 
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
@@ -24,11 +33,11 @@ public class UserComplaintReport {
     @JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
     private Comment comments;
 
-    /*
+
     @ManyToOne
     @JoinColumn(name = "message_id", referencedColumnName = "message_id")
-    private Messages message;
-     */
+    private Message message;
+
     @ManyToOne
     @JoinColumn(name = "reply_id", referencedColumnName = "reply_id")
     private Reply replies;
@@ -43,5 +52,5 @@ public class UserComplaintReport {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt ;
 }

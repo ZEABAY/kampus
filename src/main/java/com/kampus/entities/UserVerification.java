@@ -14,7 +14,7 @@ import java.util.Date;
 public class UserVerification {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "userverification_seq",sequenceName = "userverification_id_seq")
+    @SequenceGenerator(name = "user_verification_seq",sequenceName = "user_verification_id_seq")
     @Column(name = "verification_id")
     private Long verificationId;
 
@@ -27,9 +27,9 @@ public class UserVerification {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt ;
 
 
     @Column(name = "have_used",nullable = false)
-    private Boolean haveUsed = false;
+    private Boolean haveUsed ;
 }

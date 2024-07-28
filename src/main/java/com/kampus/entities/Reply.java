@@ -1,9 +1,14 @@
 package com.kampus.entities;
 import com.kampus.core.utilities.enums.ContentType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Replies")
 public class Reply {
@@ -24,19 +29,12 @@ public class Reply {
     @Column(name = "like_count", nullable = false)
     private Integer likeCount = 0;
 
-    @Column(name = "text_content")
-    private String textContent;
-
-    /*
-
-    Bunu bir ara konuşalım hangisi daha iyi olur diye
-     */
     @Enumerated(EnumType.STRING)
     @Column(name = "content_type", nullable = false)
     private ContentType contentType;
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt ;
 
 }

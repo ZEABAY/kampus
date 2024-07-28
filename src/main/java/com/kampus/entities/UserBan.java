@@ -1,9 +1,14 @@
 package com.kampus.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "UserBans")
 public class UserBan {
@@ -30,7 +35,7 @@ public class UserBan {
 
     @Column(name = "banned_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date bannedAt = new Date();
+    private Date bannedAt ;
 
 }
 

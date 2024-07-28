@@ -1,5 +1,6 @@
 package com.kampus.entities;
 
+import com.kampus.core.utilities.enums.ContentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,13 +24,14 @@ public class CommentMedia {
     @JoinColumn(name = "comment_id", nullable = false,referencedColumnName = "comment_id")
     private Comment comment;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "media_type", nullable = false)
-    private String mediaType;
+    private ContentType mediaType;
 
     @Column(name = "media_url", nullable = false)
     private String mediaUrl;
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt ;
 }

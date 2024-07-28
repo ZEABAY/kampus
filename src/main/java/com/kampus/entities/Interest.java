@@ -25,7 +25,6 @@ public class Interest {
     @Column(name = "interest_type")
     private String interestType;
 
-    // buda user tarafı
     @ManyToMany(mappedBy = "interests")
     private Set<User> users;
 
