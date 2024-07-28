@@ -58,11 +58,11 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "university_id")
-    private Universities university;
+    private University university;
 
     @ManyToOne
     @JoinColumn(name = "major_id",referencedColumnName = "major_id")
-    private Majors major;
+    private Major major;
     // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
     // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir
     // bir hobide birden fazla kullanıcı tarafından  kullanılabilir.
@@ -72,10 +72,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
-    private Set<Interests> interests;
+    private Set<Interest> interests;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PostLikes> postLikes = new HashSet<>();
+    private Set<PostLike> postLikes = new HashSet<>();
 
     @Column(name = "permissions")
     private String permissions;

@@ -7,21 +7,22 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CommentMedias")
-public class CommentMedias {
+@Table(name = "PostMedias")
+public class PostMedia {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "commentmedias_seq")
-    @SequenceGenerator(name="commentmedias_seq",sequenceName = "commentmedias_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postmedias_seq")
+    @SequenceGenerator(name="postmedias_seq",sequenceName = "postmedias_id_seq",allocationSize = 1)
     @Column(name = "media_id", unique = true, nullable = false)
     private Long mediaId;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id", nullable = false,referencedColumnName = "comment_id")
-    private Comments comments;
+    @JoinColumn(name = "post_id", nullable = false,referencedColumnName = "post_id")
+    private Post post;
 
     @Column(name = "media_type", nullable = false)
     private String mediaType;

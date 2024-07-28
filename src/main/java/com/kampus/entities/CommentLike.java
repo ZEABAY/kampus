@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CommentLikes")
-public class CommentLikes {
+public class CommentLike {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "commentlikes_seq")
     @SequenceGenerator(name = "commentlikes_seq",sequenceName = "commentslikes_id_seq",allocationSize = 1)
@@ -14,7 +14,7 @@ public class CommentLikes {
 
     @ManyToOne
     @JoinColumn(name = "comment_id", nullable = false,referencedColumnName = "comment_id")
-    private Comments comments;
+    private Comment comment;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")

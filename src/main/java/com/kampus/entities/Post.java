@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "Posts")
-public class Posts {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "posts_seq")
     @SequenceGenerator(name = "posts_seq", sequenceName = "posts_id_seq", allocationSize = 1)
@@ -38,10 +38,10 @@ public class Posts {
     db deki cascade mantığı
      */
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PostLikes> likes = new HashSet<>();
+    private Set<PostLike> likes = new HashSet<>();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Comments> comments;
+    private Set<Comment> comments;
 
 
     @Column(name = "like_count", nullable = false)
