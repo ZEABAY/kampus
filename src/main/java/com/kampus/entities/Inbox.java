@@ -11,7 +11,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Inboxes")
+@Table(name = "Inboxes", indexes = {
+        @Index(name = "idx_inbox_last_updated", columnList = "last_updated")
+})
 public class Inbox {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inbox_seq")
@@ -33,5 +35,9 @@ public class Inbox {
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt ;
+
+    @Column(name = "last_updated", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdated;
 
 }
