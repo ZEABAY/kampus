@@ -13,7 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PostMedias")
+@Table(name = "PostMedias", indexes = {
+        @Index(name = "idx_postmedia_post", columnList = "post_id"),
+        @Index(name = "idx_postmedia_created_at", columnList = "created_at")
+})
 public class PostMedia {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postmedias_seq")

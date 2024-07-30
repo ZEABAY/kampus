@@ -13,7 +13,11 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Comments")
+@Table(name = "Comments", indexes = {
+        @Index(name = "idx_comment_post", columnList = "post_id"),
+        @Index(name = "idx_comment_user", columnList = "user_id"),
+        @Index(name = "idx_comment_created_at", columnList = "created_at")
+})
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "comments_seq")

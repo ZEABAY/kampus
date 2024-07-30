@@ -12,7 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "Inboxes", indexes = {
-        @Index(name = "idx_inbox_last_updated", columnList = "last_updated")
+        @Index(name = "idx_inbox_last_updated", columnList = "last_updated"),
+        @Index(name = "idx_inbox_last_send_user", columnList = "last_send_user_id")
 })
 public class Inbox {
     @Id

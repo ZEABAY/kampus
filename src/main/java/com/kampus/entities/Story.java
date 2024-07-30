@@ -11,7 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Stories")
+@Table(name = "Stories", indexes = {
+        @Index(name = "idx_story_user", columnList = "user_id"),
+        @Index(name = "idx_story_created_at", columnList = "created_at")
+})
 public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "stories_seq")

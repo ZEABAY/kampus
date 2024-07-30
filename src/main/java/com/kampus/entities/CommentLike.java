@@ -10,7 +10,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CommentLikes")
+@Table(name = "CommentLikes", indexes = {
+        @Index(name = "idx_commentlike_comment", columnList = "comment_id"),
+        @Index(name = "idx_commentlike_user", columnList = "user_id")
+})
 public class CommentLike {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "commentlikes_seq")

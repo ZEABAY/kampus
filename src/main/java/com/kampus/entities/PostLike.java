@@ -11,7 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PostLikes")
+@Table(name = "PostLikes", indexes = {
+        @Index(name = "idx_postlike_post", columnList = "post_id"),
+        @Index(name = "idx_postlike_user", columnList = "user_id")
+})
 public class PostLike {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postlikes_seq")

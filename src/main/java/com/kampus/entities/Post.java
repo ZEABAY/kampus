@@ -14,7 +14,11 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Posts")
+@Table(name = "Posts", indexes = {
+        @Index(name = "idx_post_user", columnList = "user_id"),
+        @Index(name = "idx_post_created_at", columnList = "created_at"),
+        @Index(name = "idx_post_updated_at", columnList = "updated_at")
+})
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "posts_seq")

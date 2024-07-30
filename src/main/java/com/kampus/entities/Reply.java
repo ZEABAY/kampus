@@ -10,7 +10,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Replies")
+@Table(name = "Replies", indexes = {
+        @Index(name = "idx_reply_user", columnList = "user_id"),
+        @Index(name = "idx_reply_comment", columnList = "comment_id"),
+        @Index(name = "idx_reply_created_at", columnList = "created_at")
+})
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "reply_seq")

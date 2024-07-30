@@ -12,7 +12,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Messages")
+@Table(name = "Messages", indexes = {
+        @Index(name = "idx_message_inbox_created_at", columnList = "inbox_id, created_at")
+})
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_seq")

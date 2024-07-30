@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "InboxParticipants")
+@Table(name = "InboxParticipants", indexes = {
+        @Index(name = "idx_inboxparticipant_user", columnList = "user_id"),
+        @Index(name = "idx_inboxparticipant_inbox", columnList = "inbox_id")
+})
 public class InboxParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inbox_part_seq")

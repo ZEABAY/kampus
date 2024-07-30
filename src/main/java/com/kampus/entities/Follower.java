@@ -12,7 +12,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Followers")
+@Table(name = "Followers", indexes = {
+        @Index(name = "idx_follower_follower", columnList = "follower_id"),
+        @Index(name = "idx_follower_followed", columnList = "followed_id"),
+        @Index(name = "idx_follower_status", columnList = "status")
+})
 public class Follower {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "followers_seq")
