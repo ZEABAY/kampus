@@ -17,9 +17,9 @@ import java.util.Date;
 })
 public class PostLike {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postlikes_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postlikes_seq")
     @SequenceGenerator(name = "postlikes_seq", sequenceName = "postlikes_id_seq", allocationSize = 1)
-    @Column(name = "like_id", unique =true, nullable = false)
+    @Column(name = "like_id", unique = true, nullable = false)
     private Long likeId;
 
     @ManyToOne
@@ -27,12 +27,12 @@ public class PostLike {
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
     private User user;
 
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt ;
+    private Date createdAt;
 
 }

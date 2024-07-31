@@ -1,4 +1,5 @@
 package com.kampus.entities;
+
 import com.kampus.core.utilities.enums.ContentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,17 +19,17 @@ import java.util.Date;
 })
 public class Reply {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "reply_seq")
-    @SequenceGenerator(name = "reply_seq",sequenceName = "reply_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reply_seq")
+    @SequenceGenerator(name = "reply_seq", sequenceName = "reply_id_seq", allocationSize = 1)
     @Column(name = "reply_id", unique = true, nullable = false)
     private Long replyId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id", nullable = false,referencedColumnName = "comment_id")
+    @JoinColumn(name = "comment_id", nullable = false, referencedColumnName = "comment_id")
     private Comment comment;
 
     @Column(name = "like_count", nullable = false)
@@ -39,6 +41,6 @@ public class Reply {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt ;
+    private Date createdAt;
 
 }

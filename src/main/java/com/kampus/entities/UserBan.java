@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +36,7 @@ public class UserBan {
 
     @Column(name = "banned_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date bannedAt ;
+    private Date bannedAt;
 
 }
 

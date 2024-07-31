@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Users",indexes = {
+@Table(name = "Users", indexes = {
         @Index(name = "idx_user_mail", columnList = "mail", unique = true),
         @Index(name = "idx_user_username", columnList = "user_name", unique = true)}
 
@@ -23,7 +23,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "user_id_seq", allocationSize = 1)
     @Column(name = "user_id", unique = true, nullable = false)
     private Long userId;
@@ -65,7 +65,7 @@ public class User {
     private University university;
 
     @ManyToOne
-    @JoinColumn(name = "major_id",referencedColumnName = "major_id")
+    @JoinColumn(name = "major_id", referencedColumnName = "major_id")
     private Major major;
     // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
     // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir
@@ -89,12 +89,12 @@ public class User {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt;
 
 
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt = new Date();
+    private Date updatedAt;
 
 
     @Column(name = "current_situation")
@@ -102,6 +102,5 @@ public class User {
 
     @Column(name = "status", nullable = false)
     private String status;
-
 
 }

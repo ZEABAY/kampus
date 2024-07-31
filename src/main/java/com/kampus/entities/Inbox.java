@@ -1,12 +1,13 @@
 package com.kampus.entities;
+
 import com.kampus.core.utilities.enums.InboxType;
-import com.kampus.core.utilities.enums.MessageType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +36,7 @@ public class Inbox {
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt ;
+    private Date createdAt;
 
     @Column(name = "last_updated", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -19,9 +18,9 @@ import java.util.Date;
 })
 public class Follower {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "followers_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "followers_seq")
     @SequenceGenerator(name = "followers_seq", sequenceName = "followers_id_seq")
-    @Column(name = "followers_id",unique = true,nullable = false)
+    @Column(name = "followers_id", unique = true, nullable = false)
     private Long followersId;
 
     @ManyToOne
@@ -37,5 +36,5 @@ public class Follower {
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt ;
+    private Date createdAt;
 }

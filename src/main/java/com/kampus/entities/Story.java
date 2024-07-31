@@ -17,7 +17,7 @@ import java.util.Date;
 })
 public class Story {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "stories_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stories_seq")
     @SequenceGenerator(name = "stories_seq", sequenceName = "stories_id_seq", allocationSize = 1)
     @Column(name = "stories_id")
     private Long storiesId;
@@ -34,7 +34,7 @@ public class Story {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt ;
+    private Date createdAt;
 
 
 }

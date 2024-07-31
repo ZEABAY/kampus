@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Cities")
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "cities_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cities_seq")
     @SequenceGenerator(name = "cities_seq", sequenceName = "cities_id_seq", allocationSize = 1)
     @Column(name = "city_id")
     private int cityId;

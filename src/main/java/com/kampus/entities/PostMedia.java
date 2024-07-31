@@ -19,13 +19,13 @@ import java.util.Date;
 })
 public class PostMedia {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "postmedias_seq")
-    @SequenceGenerator(name="postmedias_seq",sequenceName = "postmedias_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postmedias_seq")
+    @SequenceGenerator(name = "postmedias_seq", sequenceName = "postmedias_id_seq", allocationSize = 1)
     @Column(name = "media_id", unique = true, nullable = false)
     private Long mediaId;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false,referencedColumnName = "post_id")
+    @JoinColumn(name = "post_id", nullable = false, referencedColumnName = "post_id")
     private Post post;
 
     @Enumerated(EnumType.STRING)
@@ -37,5 +37,5 @@ public class PostMedia {
 
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt ;
+    private Date createdAt;
 }
