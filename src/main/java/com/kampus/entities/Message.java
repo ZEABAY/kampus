@@ -8,48 +8,52 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.InboxConstants.INBOX_COLUMN_INBOX_ID;
+import static com.kampus.core.constants.entityConstants.MessageConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Messages", indexes = {
-        @Index(name = "idx_message_inbox_created_at", columnList = "inbox_id, created_at")
+@Table(name = MESSAGE_TABLE, indexes = {
+        @Index(name = MESSAGE_IDX_MESSAGE_INBOX_CREATED_AT, columnList = MESSAGE_COLUMN_LIST)
 })
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_seq")
-    @SequenceGenerator(name = "message_seq", sequenceName = "message_id_seq", allocationSize = 1)
-    @Column(name = "message_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = MESSAGE_SEQ_MESSAGE)
+    @SequenceGenerator(name = MESSAGE_SEQ_MESSAGE, sequenceName = MESSAGE_SEQ_MESSAGE_ID, allocationSize = MESSAGE_SEQ_MESSAGE_ID_ALLOCATION_SIZE)
+    @Column(name = MESSAGE_COLUMN_MESSAGE_ID, unique = true, nullable = false)
     private Long messageId;
 
 
     @ManyToOne
-    @JoinColumn(name = "inbox_id", referencedColumnName = "inbox_id", nullable = false)
+    @JoinColumn(name = INBOX_COLUMN_INBOX_ID, referencedColumnName = INBOX_COLUMN_INBOX_ID, nullable = false)
     private Inbox inbox;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
-    @Column(name = "message")
-    private String message;
+    @Column(name = MESSAGE_COLUMN_MESSAGE_CONTENT)
+    private String messageContent;
 
-    @Column(name = "media_url")
+    @Column(name = MESSAGE_COLUMN_MEDIA_URL)
     private String mediaUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "message_type", nullable = false)
+    @Column(name = MESSAGE_COLUMN_MESSAGE_TYPE, nullable = false)
     private MessageType messageType;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = MESSAGE_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = MESSAGE_COLUMN_UPDATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @Column(name = "is_deleted", nullable = false)
+    @Column(name = MESSAGE_COLUMN_IS_DELETED, nullable = false)
     private Boolean isDeleted;
 
 }

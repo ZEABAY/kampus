@@ -7,31 +7,35 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.PostConstants.POST_COLUMN_POST_ID;
+import static com.kampus.core.constants.entityConstants.PostLikeConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PostLikes", indexes = {
-        @Index(name = "idx_postlike_post", columnList = "post_id"),
-        @Index(name = "idx_postlike_user", columnList = "user_id")
+@Table(name = POST_LIKE_TABLE, indexes = {
+        @Index(name = POST_LIKE_IDX_POST_LIKE_POST, columnList = POST_COLUMN_POST_ID),
+        @Index(name = POST_LIKE_IDX_POST_LIKE_USER, columnList = USER_COLUMN_USER_ID)
 })
 public class PostLike {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postlikes_seq")
-    @SequenceGenerator(name = "postlikes_seq", sequenceName = "postlikes_id_seq", allocationSize = 1)
-    @Column(name = "like_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = POST_LIKE_SEQ_POST_LIKE)
+    @SequenceGenerator(name = POST_LIKE_SEQ_POST_LIKE, sequenceName = POST_LIKE_SEQ_POST_LIKE_ID, allocationSize = POST_LIKE_SEQ_POST_LIKE_ID_ALLOCATION_SIZE)
+    @Column(name = POST_LIKE_COLUMN_LIKE_ID, unique = true, nullable = false)
     private Long likeId;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
+    @JoinColumn(name = POST_COLUMN_POST_ID, nullable = false)
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
+    @JoinColumn(name = USER_COLUMN_USER_ID, nullable = false, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = POST_LIKE_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 

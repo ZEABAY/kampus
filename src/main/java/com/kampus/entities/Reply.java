@@ -8,38 +8,42 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.CommentConstants.COMMENT_COLUMN_COMMENT_ID;
+import static com.kampus.core.constants.entityConstants.ReplyConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Replies", indexes = {
-        @Index(name = "idx_reply_user", columnList = "user_id"),
-        @Index(name = "idx_reply_comment", columnList = "comment_id"),
-        @Index(name = "idx_reply_created_at", columnList = "created_at")
+@Table(name = REPLY_TABLE, indexes = {
+        @Index(name = REPLY_IDX_REPLY_USER, columnList = USER_COLUMN_USER_ID),
+        @Index(name = REPLY_IDX_REPLY_COMMENT, columnList = COMMENT_COLUMN_COMMENT_ID),
+        @Index(name = REPLY_IDX_REPLY_CREATED_AT, columnList = REPLY_COLUMN_CREATED_AT)
 })
 public class Reply {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reply_seq")
-    @SequenceGenerator(name = "reply_seq", sequenceName = "reply_id_seq", allocationSize = 1)
-    @Column(name = "reply_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = REPLY_SEQ_REPLY)
+    @SequenceGenerator(name = REPLY_SEQ_REPLY, sequenceName = REPLY_SEQ_REPLY_ID, allocationSize = REPLY_SEQ_REPLY_ID_ALLOCATION_SIZE)
+    @Column(name = REPLY_COLUMN_REPLY_ID, unique = true, nullable = false)
     private Long replyId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
+    @JoinColumn(name = USER_COLUMN_USER_ID, nullable = false, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id", nullable = false, referencedColumnName = "comment_id")
+    @JoinColumn(name = COMMENT_COLUMN_COMMENT_ID, nullable = false, referencedColumnName = COMMENT_COLUMN_COMMENT_ID)
     private Comment comment;
 
-    @Column(name = "like_count", nullable = false)
-    private Integer likeCount = 0;
+    @Column(name = REPLY_COLUMN_LIKE_COUNT, nullable = false)
+    private Integer likeCount;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "content_type", nullable = false)
+    @Column(name = REPLY_COLUMN_CONTENT_TYPE, nullable = false)
     private ContentType contentType;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = REPLY_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 

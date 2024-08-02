@@ -8,37 +8,40 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.InboxConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Inboxes", indexes = {
-        @Index(name = "idx_inbox_last_updated", columnList = "last_updated"),
-        @Index(name = "idx_inbox_last_send_user", columnList = "last_send_user_id")
+@Table(name = INBOX_TABLE, indexes = {
+        @Index(name = INBOX_IDX_INBOX_LAST_UPDATED, columnList = INBOX_COLUMN_LAST_UPDATED),
+        @Index(name = INBOX_IDX_INBOX_LAST_SEND_USER, columnList = INBOX_COLUMN_LAST_SEND_USER_ID)
 })
 public class Inbox {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inbox_seq")
-    @SequenceGenerator(name = "inbox_seq", sequenceName = "inbox_id_seq", allocationSize = 1)
-    @Column(name = "inbox_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = INBOX_SEQ_INBOX)
+    @SequenceGenerator(name = INBOX_SEQ_INBOX, sequenceName = INBOX_SEQ_INBOX_ID, allocationSize = INBOX_SEQ_INBOX_ID_ALLOCATION_SIZE)
+    @Column(name = INBOX_COLUMN_INBOX_ID)
     private Long inboxId;
 
-    @Column(name = "last_message")
+    @Column(name = INBOX_COLUMN_LAST_MESSAGE)
     private String lastMessage;
 
     @ManyToOne
-    @JoinColumn(name = "last_send_user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = INBOX_COLUMN_LAST_SEND_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
     private User lastSendUser;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "inbox_type", nullable = false)
+    @Column(name = INBOX_COLUMN_INBOX_TYPE, nullable = false)
     private InboxType inboxType;
 
-    @Column(name = "created_at")
+    @Column(name = INBOX_COLUMN_CREATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "last_updated", nullable = false)
+    @Column(name = INBOX_COLUMN_LAST_UPDATED, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
 

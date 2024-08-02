@@ -7,30 +7,34 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.CommentConstants.COMMENT_COLUMN_COMMENT_ID;
+import static com.kampus.core.constants.entityConstants.CommentLikeConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CommentLikes", indexes = {
-        @Index(name = "idx_commentlike_comment", columnList = "comment_id"),
-        @Index(name = "idx_commentlike_user", columnList = "user_id")
+@Table(name = COMMENT_LIKE_TABLE, indexes = {
+        @Index(name = COMMENT_LIKE_IDX_COMMENT_LIKE_COMMENT, columnList = COMMENT_COLUMN_COMMENT_ID),
+        @Index(name = COMMENT_LIKE_IDX_COMMENT_LIKE_USER, columnList = USER_COLUMN_USER_ID)
 })
 public class CommentLike {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentlikes_seq")
-    @SequenceGenerator(name = "commentlikes_seq", sequenceName = "commentslikes_id_seq", allocationSize = 1)
-    @Column(name = "like_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = COMMENT_LIKE_SEQ_COMMENT_LIKE)
+    @SequenceGenerator(name = COMMENT_LIKE_SEQ_COMMENT_LIKE, sequenceName = COMMENT_LIKE_SEQ_COMMENT_LIKE_ID, allocationSize = COMMENT_LIKE_SEQ_COMMENT_LIKE_ID_ALLOCATION_SIZE)
+    @Column(name = COMMENT_LIKE_COLUMN_LIKE_ID, unique = true, nullable = false)
     private Long likeId;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id", nullable = false, referencedColumnName = "comment_id")
+    @JoinColumn(name = COMMENT_COLUMN_COMMENT_ID, nullable = false, referencedColumnName = COMMENT_COLUMN_COMMENT_ID)
     private Comment comment;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
+    @JoinColumn(name = USER_COLUMN_USER_ID, nullable = false, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = COMMENT_LIKE_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 

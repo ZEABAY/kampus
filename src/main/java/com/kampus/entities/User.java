@@ -8,99 +8,106 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+
+import static com.kampus.core.constants.entityConstants.InterestConstants.INTEREST_COLUMN_INTEREST_ID;
+import static com.kampus.core.constants.entityConstants.MajorConstants.MAJOR_COLUMN_MAJOR_ID;
+import static com.kampus.core.constants.entityConstants.UniversityConstants.UNIVERSITY_COLUMN_UNIVERSITY_ID;
+import static com.kampus.core.constants.entityConstants.UserConstants.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Users", indexes = {
-        @Index(name = "idx_user_mail", columnList = "mail", unique = true),
-        @Index(name = "idx_user_username", columnList = "user_name", unique = true)}
+@Table(name = USER_TABLE, indexes = {
+        @Index(name = USER_IDX_USER_MAIL, columnList = USER_COLUMN_MAIL, unique = true),
+        @Index(name = USER_IDX_USER_USERNAME, columnList = USER_COLUMN_USERNAME, unique = true)}
 
 )
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_id_seq", allocationSize = 1)
-    @Column(name = "user_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = USER_SEQ_USER)
+    @SequenceGenerator(name = USER_SEQ_USER, sequenceName = USER_SEQ_USER_ID, allocationSize = USER_SEQ_USER_ID_ALLOCATION_SIZE)
+    @Column(name = USER_COLUMN_USER_ID, unique = true, nullable = false)
     private Long userId;
 
-    @Column(name = "user_name", nullable = false)
-    private String userName;
+    @Column(name = USER_COLUMN_USERNAME, nullable = false)
+    private String username;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = USER_COLUMN_PASSWORD, nullable = false)
     private String password;
 
-    @Column(name = "mail", nullable = false)
+    @Column(name = USER_COLUMN_MAIL, nullable = false)
     private String mail;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = USER_COLUMN_FIRST_NAME, nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = USER_COLUMN_LAST_NAME, nullable = false)
     private String lastName;
 
-    @Column(name = "birth_date")
+    @Column(name = USER_COLUMN_PHONE_NUMBER, nullable = false)
+    private String phoneNumber;
+
+    @Column(name = USER_COLUMN_BIRTH_DATE)
     private LocalDate birthDate;
     // dd.MM.yyyy
 
-    @Column(name = "biography")
+    @Column(name = USER_COLUMN_BIOGRAPHY)
     private String biography;
 
-    @Column(name = "profile_pic_url")
+    @Column(name = USER_COLUMN_PROFILE_PIC_URL)
     private String profilePicUrl;
 
-    @Column(name = "avatar_url")
+    @Column(name = USER_COLUMN_AVATAR_URL)
     private String avatarUrl;
 
-    @Column(name = "roles", nullable = false)
-    private String roles;
+    @Column(name = USER_COLUMN_ROLE, nullable = false)
+    private String role;
 
+    @Column(name = USER_COLUMN_PERMISSION)
+    private String permissions;
+
+    @Column(name = USER_COLUMN_IS_PRIVATE)
+    private Boolean isPrivate;
+
+    @Column(name = USER_COLUMN_CREATED_AT, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+
+    @Column(name = USER_COLUMN_UPDATED_AT, nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
+
+
+    @Column(name = USER_COLUMN_CURRENT_SITUATION)
+    private String currentSituation;
+
+    @Column(name = USER_COLUMN_STATUS, nullable = false)
+    private String status;
 
     @ManyToOne
-    @JoinColumn(name = "university_id")
+    @JoinColumn(name = UNIVERSITY_COLUMN_UNIVERSITY_ID)
     private University university;
 
     @ManyToOne
-    @JoinColumn(name = "major_id", referencedColumnName = "major_id")
+    @JoinColumn(name = MAJOR_COLUMN_MAJOR_ID, referencedColumnName = MAJOR_COLUMN_MAJOR_ID)
     private Major major;
     // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
     // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir
     // bir hobide birden fazla kullanıcı tarafından  kullanılabilir.
     @ManyToMany
     @JoinTable(
-            name = "UserInterests",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "interest_id")
+            name = USER_INTEREST_TABLE,
+            joinColumns = @JoinColumn(name = USER_COLUMN_USER_ID),
+            inverseJoinColumns = @JoinColumn(name = INTEREST_COLUMN_INTEREST_ID)
     )
     private Set<Interest> interests;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PostLike> postLikes = new HashSet<>();
+    @OneToMany(mappedBy = USER_MAP_USER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PostLike> postLikes;
 
-    @Column(name = "permissions")
-    private String permissions;
-
-    @Column(name = "is_private")
-    private Boolean isPrivate;
-
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-
-
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-
-    @Column(name = "current_situation")
-    private String currentSituation;
-
-    @Column(name = "status", nullable = false)
-    private String status;
 
 }

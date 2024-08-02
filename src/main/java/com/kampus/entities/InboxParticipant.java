@@ -5,27 +5,31 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.kampus.core.constants.entityConstants.InboxConstants.INBOX_COLUMN_INBOX_ID;
+import static com.kampus.core.constants.entityConstants.InboxParticipantsConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "InboxParticipants", indexes = {
-        @Index(name = "idx_inboxparticipant_user", columnList = "user_id"),
-        @Index(name = "idx_inboxparticipant_inbox", columnList = "inbox_id")
+@Table(name = INBOX_PARTICIPANT_TABLE, indexes = {
+        @Index(name = INBOX_PARTICIPANT_IDX_INBOX_PARTICIPANT_USER, columnList = USER_COLUMN_USER_ID),
+        @Index(name = INBOX_PARTICIPANT_IDX_INBOX_PARTICIPANT_INBOX, columnList = INBOX_COLUMN_INBOX_ID)
 })
 public class InboxParticipant {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inbox_part_seq")
-    @SequenceGenerator(name = "inbox_part_seq", sequenceName = "inbox_part_id_seq", allocationSize = 1)
-    @Column(name = "inbox_part_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT)
+    @SequenceGenerator(name = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT, sequenceName = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT_ID, allocationSize = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT_ID_ALLOCATION_SIZE)
+    @Column(name = INBOX_PARTICIPANT_COLUMN_INBOX_PARTICIPANT_ID)
     private Long inboxPartId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "inbox_id", referencedColumnName = "inbox_id", nullable = false)
+    @JoinColumn(name = INBOX_COLUMN_INBOX_ID, referencedColumnName = INBOX_COLUMN_INBOX_ID, nullable = false)
     private Inbox inbox;
 
 }

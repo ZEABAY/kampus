@@ -7,32 +7,35 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.StoryConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Stories", indexes = {
-        @Index(name = "idx_story_user", columnList = "user_id"),
-        @Index(name = "idx_story_created_at", columnList = "created_at")
+@Table(name = STORY_TABLE, indexes = {
+        @Index(name = STORY_IDX_STORY_USER, columnList = USER_COLUMN_USER_ID),
+        @Index(name = STORY_IDX_STORY_CREATED_AT, columnList = STORY_COLUMN_CREATED_AT)
 })
 public class Story {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stories_seq")
-    @SequenceGenerator(name = "stories_seq", sequenceName = "stories_id_seq", allocationSize = 1)
-    @Column(name = "stories_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = STORY_SEQ_STORY)
+    @SequenceGenerator(name = STORY_SEQ_STORY, sequenceName = STORY_SEQ_STORY_ID, allocationSize = STORY_SEQ_STORY_ID_ALLOCATION_SIZE)
+    @Column(name = STORY_COLUMN_STORY_ID)
     private Long storiesId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
-    @Column(name = "story_type")
+    @Column(name = STORY_COLUMN_STORY_TYPE)
     private String storyType;
 
-    @Column(name = "story_url")
+    @Column(name = STORY_COLUMN_STORY_URL)
     private String url;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = STORY_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 

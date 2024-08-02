@@ -7,27 +7,31 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.DeletedConversationConstants.*;
+import static com.kampus.core.constants.entityConstants.InboxConstants.INBOX_COLUMN_INBOX_ID;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "DeletedConversations")
+@Table(name = DELETED_CONVERSATION_TABLE)
 public class DeletedConversation {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deleted_conv_seq")
-    @SequenceGenerator(name = "deleted_conv_seq", sequenceName = "deleted_conversation_id_seq", allocationSize = 1)
-    @Column(name = "deleted_conversation_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = DELETED_CONVERSATION_SEQ_DELETED_CONVERSATION)
+    @SequenceGenerator(name = DELETED_CONVERSATION_SEQ_DELETED_CONVERSATION, sequenceName = DELETED_CONVERSATION_SEQ_DELETED_CONVERSATION_ID, allocationSize = DELETED_CONVERSATION_SEQ_DELETED_CONVERSATION_ID_ALLOCATION_SIZE)
+    @Column(name = DELETED_CONVERSATION_COLUMN_DELETED_CONVERSATION_ID)
     private Long deletedConversationId;
 
     @ManyToOne
-    @JoinColumn(name = "inbox_id", referencedColumnName = "inbox_id", nullable = false)
+    @JoinColumn(name = INBOX_COLUMN_INBOX_ID, referencedColumnName = INBOX_COLUMN_INBOX_ID, nullable = false)
     private Inbox inbox;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
-    @Column(name = "deleted_at", nullable = false)
+    @Column(name = DELETED_CONVERSATION_COLUMN_DELETED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
 }

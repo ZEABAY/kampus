@@ -8,34 +8,37 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.PostConstants.POST_COLUMN_POST_ID;
+import static com.kampus.core.constants.entityConstants.PostMediaConstants.*;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PostMedias", indexes = {
-        @Index(name = "idx_postmedia_post", columnList = "post_id"),
-        @Index(name = "idx_postmedia_created_at", columnList = "created_at")
+@Table(name = POST_MEDIA_TABLE, indexes = {
+        @Index(name = POST_MEDIA_IDX_POST_MEDIA_POST, columnList = POST_COLUMN_POST_ID),
+        @Index(name = POST_MEDIA_IDX_POST_MEDIA_CREATED_AT, columnList = POST_MEDIA_COLUMN_CREATED_AT)
 })
 public class PostMedia {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postmedias_seq")
-    @SequenceGenerator(name = "postmedias_seq", sequenceName = "postmedias_id_seq", allocationSize = 1)
-    @Column(name = "media_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = POST_MEDIA_SEQ_POST_MEDIA)
+    @SequenceGenerator(name = POST_MEDIA_SEQ_POST_MEDIA, sequenceName = POST_MEDIA_SEQ_POST_MEDIA_ID, allocationSize = POST_MEDIA_SEQ_POST_MEDIA_ID_ALLOCATION_SIZE)
+    @Column(name = POST_MEDIA_COLUMN_MEDIA_ID, unique = true, nullable = false)
     private Long mediaId;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false, referencedColumnName = "post_id")
+    @JoinColumn(name = POST_COLUMN_POST_ID, nullable = false, referencedColumnName = POST_COLUMN_POST_ID)
     private Post post;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "media_type", nullable = false)
+    @Column(name = POST_MEDIA_COLUMN_MEDIA_TYPE, nullable = false)
     private ContentType mediaType;
 
-    @Column(name = "media_url", nullable = false)
+    @Column(name = POST_MEDIA_COLUMN_MEDIA_URL, nullable = false)
     private String mediaUrl;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = POST_MEDIA_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 }

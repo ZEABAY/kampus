@@ -7,31 +7,35 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.MessageConstants.MESSAGE_COLUMN_MESSAGE_ID;
+import static com.kampus.core.constants.entityConstants.SeenMessageConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "SeenMessages", indexes = {
-        @Index(name = "idx_seenmessage_message", columnList = "message_id"),
-        @Index(name = "idx_seenmessage_user", columnList = "user_id"),
-        @Index(name = "idx_seenmessage_seen_at", columnList = "seen_at")
+@Table(name = SEEN_MESSAGE_TABLE, indexes = {
+        @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_MESSAGE, columnList = MESSAGE_COLUMN_MESSAGE_ID),
+        @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_USER, columnList = USER_COLUMN_USER_ID),
+        @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_SEEN_AT, columnList = SEEN_MESSAGE_COLUMN_SEEN_AT)
 })
 public class SeenMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seen_msg_seq")
-    @SequenceGenerator(name = "seen_msg_seq", sequenceName = "seen_message_id_seq", allocationSize = 1)
-    @Column(name = "seen_message_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEEN_MESSAGE_SEQ_SEEN_MESSAGE)
+    @SequenceGenerator(name = SEEN_MESSAGE_SEQ_SEEN_MESSAGE, sequenceName = SEEN_MESSAGE_SEQ_SEEN_MESSAGE_ID, allocationSize = SEEN_MESSAGE_SEQ_SEEN_MESSAGE_ID_ALLOCATION_SIZE)
+    @Column(name = SEEN_MESSAGE_COLUMN_SEEN_MESSAGE_ID)
     private Long seenMessageId;
 
     @ManyToOne
-    @JoinColumn(name = "message_id", referencedColumnName = "message_id", nullable = false)
+    @JoinColumn(name = MESSAGE_COLUMN_MESSAGE_ID, referencedColumnName = MESSAGE_COLUMN_MESSAGE_ID, nullable = false)
     private Message message;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
-    @Column(name = "seen_at", nullable = false)
+    @Column(name = SEEN_MESSAGE_COLUMN_SEEN_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date seenAt;
 }

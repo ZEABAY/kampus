@@ -5,19 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.kampus.core.constants.entityConstants.MajorConstants.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Majors")
+@Table(name = MAJOR_TABLE)
 public class Major {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "majors_seq")
-    @SequenceGenerator(name = "majors_seq", sequenceName = "majors_id_seq", allocationSize = 1)
-    @Column(name = "major_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = MAJOR_SEQ_MAJOR)
+    @SequenceGenerator(name = MAJOR_SEQ_MAJOR, sequenceName = MAJOR_SEQ_MAJOR_ID, allocationSize = MAJOR_SEQ_MAJOR_ID_ALLOCATION_SIZE)
+    @Column(name = MAJOR_COLUMN_MAJOR_ID, unique = true, nullable = false)
     private int majorId;
 
-    @Column(name = "major_name")
+    @Column(name = MAJOR_COLUMN_MAJOR_NAME, unique = true, nullable = false)
     private String majorName;
 
 }

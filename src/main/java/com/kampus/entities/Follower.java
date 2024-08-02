@@ -7,34 +7,37 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+import static com.kampus.core.constants.entityConstants.FollowerConstants.*;
+import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Followers", indexes = {
-        @Index(name = "idx_follower_follower", columnList = "follower_id"),
-        @Index(name = "idx_follower_followed", columnList = "followed_id"),
-        @Index(name = "idx_follower_status", columnList = "status")
+@Table(name = FOLLOWER_TABLE, indexes = {
+        @Index(name = FOLLOWER_IDX_FOLLOWER, columnList = FOLLOWER_COLUMN_FOLLOWER_ID),
+        @Index(name = FOLLOWER_IDX_FOLLOWED, columnList = FOLLOWER_COLUMN_FOLLOWER_ID),
+        @Index(name = FOLLOWER_IDX_STATUS, columnList = FOLLOWER_COLUMN_STATUS)
 })
 public class Follower {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "followers_seq")
-    @SequenceGenerator(name = "followers_seq", sequenceName = "followers_id_seq")
-    @Column(name = "followers_id", unique = true, nullable = false)
-    private Long followersId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = FOLLOWER_SEQ_FOLLOWER)
+    @SequenceGenerator(name = FOLLOWER_SEQ_FOLLOWER, sequenceName = FOLLOWER_SEQ_FOLLOWER_ID, allocationSize = FOLLOWER_SEQ_FOLLOWER_ID_ALLOCATION_SIZE)
+    @Column(name = FOLLOWER_COLUMN_FOLLOWER_ID, unique = true, nullable = false)
+    private Long followerId;
 
     @ManyToOne
-    @JoinColumn(name = "follower_id", referencedColumnName = "user_id")
-    private User follower;
+    @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWER_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
+    private User followerUser;
 
     @ManyToOne
-    @JoinColumn(name = "followed_id", referencedColumnName = "user_id")
-    private User followed;
+    @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWED_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
+    private User followedUser;
 
-    @Column(name = "status")
+    @Column(name = FOLLOWER_COLUMN_STATUS)
     private String status;
 
-    @Column(name = "created_at")
+    @Column(name = FOLLOWER_COLUMN_CREATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 }

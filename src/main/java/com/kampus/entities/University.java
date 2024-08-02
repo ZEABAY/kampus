@@ -5,23 +5,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.kampus.core.constants.entityConstants.CityConstants.CITY_COLUMN_CITY_ID;
+import static com.kampus.core.constants.entityConstants.UniversityConstants.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Universities")
+@Table(name = UNIVERSITY_TABLE)
 
 public class University {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "universities_seq")
-    @SequenceGenerator(name = "universities_seq", sequenceName = "universities_id_seq", allocationSize = 1)
-    @Column(name = "university_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = UNIVERSITY_SEQ_UNIVERSITY)
+    @SequenceGenerator(name = UNIVERSITY_SEQ_UNIVERSITY, sequenceName = UNIVERSITY_SEQ_UNIVERSITY_ID, allocationSize = UNIVERSITY_SEQ_UNIVERSITY_ID_ALLOCATION_SIZE)
+    @Column(name = UNIVERSITY_COLUMN_UNIVERSITY_ID, nullable = false)
     private int universityID;
 
-    @Column(name = "university_name", nullable = false)
+    @Column(name = UNIVERSITY_COLUMN_UNIVERSITY_NAME, nullable = false)
     private String universityName;
 
     @ManyToOne
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    @JoinColumn(name = CITY_COLUMN_CITY_ID, referencedColumnName = CITY_COLUMN_CITY_ID)
     private City city;
 }

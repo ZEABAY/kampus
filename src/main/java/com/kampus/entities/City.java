@@ -5,19 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.kampus.core.constants.entityConstants.CityConstants.*;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Cities")
+@Table(name = CITY_TABLE)
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cities_seq")
-    @SequenceGenerator(name = "cities_seq", sequenceName = "cities_id_seq", allocationSize = 1)
-    @Column(name = "city_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = CITY_SEQ_CITY)
+    @SequenceGenerator(name = CITY_SEQ_CITY, sequenceName = CITY_SEQ_CITY_ID, allocationSize = CITY_SEQ_CITY_ID_ALLOCATION_SIZE)
+    @Column(name = CITY_COLUMN_CITY_ID)
     private int cityId;
 
-    @Column(name = "city_name")
+    @Column(name = CITY_COLUMN_CITY_NAME)
     private String cityName;
 }
