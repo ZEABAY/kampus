@@ -40,4 +40,9 @@ public class Follower {
     @Column(name = FOLLOWER_COLUMN_CREATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=new Date();
+    }
 }

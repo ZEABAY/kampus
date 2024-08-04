@@ -39,4 +39,9 @@ public class PostLike {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=new Date();
+    }
+
 }

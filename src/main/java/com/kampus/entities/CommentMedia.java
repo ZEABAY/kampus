@@ -37,4 +37,9 @@ public class CommentMedia {
     @Column(name = COMMENT_MEDIA_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
 }

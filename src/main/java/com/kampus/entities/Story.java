@@ -39,5 +39,10 @@ public class Story {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=new Date();
+    }
+
 
 }

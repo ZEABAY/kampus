@@ -60,5 +60,9 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
 
 }

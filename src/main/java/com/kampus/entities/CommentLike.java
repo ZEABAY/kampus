@@ -38,4 +38,9 @@ public class CommentLike {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
 }

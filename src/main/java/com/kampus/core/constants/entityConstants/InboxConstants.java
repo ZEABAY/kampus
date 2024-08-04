@@ -24,7 +24,7 @@ public class InboxConstants {
     public static final String INBOX_COLUMN_LAST_SEND_USER_ID = "last_send_user_id";
     public static final String INBOX_COLUMN_INBOX_TYPE = "inbox_type";
     public static final String INBOX_COLUMN_CREATED_AT = "created_at";
-    public static final String INBOX_COLUMN_LAST_UPDATED = "last_updated";
+    public static final String INBOX_COLUMN_UPDATED_AT = "updated_at";
 
 
     /**

@@ -38,4 +38,8 @@ public class SeenMessage {
     @Column(name = SEEN_MESSAGE_COLUMN_SEEN_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date seenAt;
+    @PrePersist
+    protected void onCreate(){
+        this.seenAt=new Date();
+    }
 }

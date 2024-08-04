@@ -36,4 +36,10 @@ public class UserVerification {
 
     @Column(name = USER_VERIFICATION_COLUMN_HAVE_USED, nullable = false)
     private Boolean haveUsed;
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=new Date();
+        this.haveUsed=false;
+    }
 }

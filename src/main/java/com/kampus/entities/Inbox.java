@@ -16,7 +16,7 @@ import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUM
 @NoArgsConstructor
 @Entity
 @Table(name = INBOX_TABLE, indexes = {
-        @Index(name = INBOX_IDX_INBOX_LAST_UPDATED, columnList = INBOX_COLUMN_LAST_UPDATED),
+        @Index(name = INBOX_IDX_INBOX_LAST_UPDATED, columnList = INBOX_COLUMN_UPDATED_AT),
         @Index(name = INBOX_IDX_INBOX_LAST_SEND_USER, columnList = INBOX_COLUMN_LAST_SEND_USER_ID)
 })
 public class Inbox {
@@ -41,8 +41,19 @@ public class Inbox {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = INBOX_COLUMN_LAST_UPDATED, nullable = false)
+    @Column(name = INBOX_COLUMN_UPDATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdated;
+    private Date updatedAt;
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=new Date();
+        this.updatedAt=new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt=new Date();
+    }
 
 }

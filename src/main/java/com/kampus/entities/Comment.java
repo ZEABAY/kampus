@@ -49,4 +49,9 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
+
 }

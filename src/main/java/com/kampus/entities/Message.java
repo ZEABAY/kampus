@@ -56,5 +56,15 @@ public class Message {
     @Column(name = MESSAGE_COLUMN_IS_DELETED, nullable = false)
     private Boolean isDeleted;
 
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=new Date();
+        this.updatedAt=new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt=new Date();
+    }
 }
 
