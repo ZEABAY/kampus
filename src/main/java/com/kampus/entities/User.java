@@ -1,6 +1,8 @@
 package com.kampus.entities;
 
 
+import com.kampus.core.utilities.enums.UserRoles;
+import com.kampus.core.utilities.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -63,11 +65,9 @@ public class User {
     @Column(name = USER_COLUMN_AVATAR_URL)
     private String avatarUrl;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = USER_COLUMN_ROLE, nullable = false)
-    private String role;
-
-    @Column(name = USER_COLUMN_PERMISSION)
-    private String permissions;
+    private UserRoles role;
 
     @Column(name = USER_COLUMN_IS_PRIVATE)
     private Boolean isPrivate;
@@ -85,8 +85,9 @@ public class User {
     @Column(name = USER_COLUMN_CURRENT_SITUATION)
     private String currentSituation;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = USER_COLUMN_STATUS, nullable = false)
-    private String status;
+    private UserStatus status;
 
     @ManyToOne
     @JoinColumn(name = UNIVERSITY_COLUMN_UNIVERSITY_ID)
@@ -114,6 +115,9 @@ public class User {
     protected void onCreate() {
         this.createdAt = new Date();
         this.updatedAt = new Date();
+        this.role = UserRoles.USER;
+        this.status = UserStatus.INACTIVE;
+        this.isPrivate = false;
     }
 
     @PreUpdate

@@ -3,6 +3,7 @@ package com.kampus.service.concretes;
 import com.kampus.core.service.BaseService;
 import com.kampus.core.utilities.mappers.ModelMapperService;
 import com.kampus.dataAccess.UserRepository;
+import com.kampus.entities.Major;
 import com.kampus.entities.User;
 import com.kampus.service.requests.userRequests.CreateUserRequest;
 import com.kampus.service.requests.userRequests.UpdateUserRequest;
@@ -27,7 +28,7 @@ public class UserService implements BaseService<CreateUserRequest, Long, GetUser
         User user = this.modelMapperService.forRequest().map(createUserRequest, User.class);
 
         //İş kulları
-        this.userBusinessRules.checkIfUsernameExists(createUserRequest.getUsername());
+        //this.userBusinessRules.checkIfUsernameExists(createUserRequest.username());
 
 
         this.userRepository.save(user);
