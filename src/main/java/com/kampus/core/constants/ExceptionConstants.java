@@ -13,4 +13,5 @@ public class ExceptionConstants {
     public static final String EXCEPTION_CONSTANT_STATUS_DESCRIPTION_KEY = "statusDescription";
     public static final String EXCEPTION_CONSTANT_TIMESTAMP_KEY = "timestamp";
     public static final String EXCEPTION_CONSTANT_ERRORS_KEY = "errors";
+    public static final String EXCEPTION_CONSTANT_USERNAME_EXIST = "This username is already taken";
 }
