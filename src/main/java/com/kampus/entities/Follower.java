@@ -42,7 +42,7 @@ public class Follower {
     private Date createdAt;
 
     @PrePersist
-    protected void onCreate(){
-        this.createdAt=new Date();
+    protected void onCreate() {
+        this.createdAt = new Date();
     }
 }

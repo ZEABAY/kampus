@@ -46,9 +46,10 @@ public class Reply {
     @Column(name = REPLY_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
     @PrePersist
-    protected void onCreate(){
-        this.createdAt=new Date();
+    protected void onCreate() {
+        this.createdAt = new Date();
     }
 
 }

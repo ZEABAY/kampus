@@ -38,8 +38,8 @@ public class UserVerification {
     private Boolean haveUsed;
 
     @PrePersist
-    protected void onCreate(){
-        this.createdAt=new Date();
-        this.haveUsed=false;
+    protected void onCreate() {
+        this.createdAt = new Date();
+        this.haveUsed = false;
     }
 }

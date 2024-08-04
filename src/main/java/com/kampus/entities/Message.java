@@ -57,14 +57,14 @@ public class Message {
     private Boolean isDeleted;
 
     @PrePersist
-    protected void onCreate(){
-        this.createdAt=new Date();
-        this.updatedAt=new Date();
+    protected void onCreate() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt=new Date();
+    protected void onUpdate() {
+        this.updatedAt = new Date();
     }
 }
 

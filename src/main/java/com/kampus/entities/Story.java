@@ -40,8 +40,8 @@ public class Story {
     private Date createdAt;
 
     @PrePersist
-    protected void onCreate(){
-        this.createdAt=new Date();
+    protected void onCreate() {
+        this.createdAt = new Date();
     }
 
 

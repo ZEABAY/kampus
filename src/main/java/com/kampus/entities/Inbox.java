@@ -46,14 +46,14 @@ public class Inbox {
     private Date updatedAt;
 
     @PrePersist
-    protected void onCreate(){
-        this.createdAt=new Date();
-        this.updatedAt=new Date();
+    protected void onCreate() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt=new Date();
+    protected void onUpdate() {
+        this.updatedAt = new Date();
     }
 
 }
