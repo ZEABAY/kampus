@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.kampus.core.constants.ExceptionConstants.*;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -18,14 +20,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, Object> errors = new HashMap<>();
-        errors.put("status", HttpStatus.BAD_REQUEST.value());
-        errors.put("statusDescription", HttpStatus.BAD_REQUEST.getReasonPhrase());
-        errors.put("timestamp", LocalDateTime.now());
+        errors.put(EXCEPTION_CONSTANT_STATUS_KEY, HttpStatus.BAD_REQUEST.value());
+        errors.put(EXCEPTION_CONSTANT_STATUS_DESCRIPTION_KEY, HttpStatus.BAD_REQUEST.getReasonPhrase());
+        errors.put(EXCEPTION_CONSTANT_TIMESTAMP_KEY, LocalDateTime.now());
         Map<String, String> fieldErrors = new HashMap<>();
         ex.getBindingResult()
                 .getFieldErrors()
                 .forEach(error -> fieldErrors.put(error.getField(), error.getDefaultMessage()));
-        errors.put("errors", fieldErrors);
+        errors.put(EXCEPTION_CONSTANT_ERRORS_KEY, fieldErrors);
         return errors;
     }
 
