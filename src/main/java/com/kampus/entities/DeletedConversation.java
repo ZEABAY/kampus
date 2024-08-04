@@ -34,4 +34,9 @@ public class DeletedConversation {
     @Column(name = DELETED_CONVERSATION_COLUMN_DELETED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.deletedAt = new Date();
+    }
 }

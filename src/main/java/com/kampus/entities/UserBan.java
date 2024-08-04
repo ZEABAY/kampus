@@ -42,5 +42,10 @@ public class UserBan {
     @Temporal(TemporalType.TIMESTAMP)
     private Date bannedAt;
 
+    @PrePersist
+    protected void onCreate() {
+        this.bannedAt = new Date();
+    }
+
 }
 
