@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import static com.kampus.core.constants.entityConstants.InterestConstants.INTEREST_COLUMN_INTEREST_ID;
@@ -106,6 +107,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = INTEREST_COLUMN_INTEREST_ID)
     )
     private Set<Interest> interests;
+
+    @OneToMany(mappedBy = USER_MAP_USER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CommunityMember> communityMemberships = new HashSet<>();
 
     @OneToMany(mappedBy = USER_MAP_USER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PostLike> postLikes;
