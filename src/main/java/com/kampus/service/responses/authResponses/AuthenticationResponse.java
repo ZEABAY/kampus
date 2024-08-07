@@ -1,16 +1,14 @@
-package com.kampus.service.responses.userResponses;
+package com.kampus.service.responses.authResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetUserByIdResponse {
-    private int userId;
-    private String username;
+public class AuthenticationResponse {
+    private String token;
 }

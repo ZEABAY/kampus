@@ -5,11 +5,17 @@ import com.kampus.core.utilities.enums.UserRoles;
 import com.kampus.core.utilities.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import static com.kampus.core.constants.entityConstants.InterestConstants.INTEREST_COLUMN_INTEREST_ID;
@@ -26,7 +32,7 @@ import static com.kampus.core.constants.entityConstants.UserConstants.*;
         @Index(name = USER_IDX_USER_USERNAME, columnList = USER_COLUMN_USERNAME, unique = true)}
 
 )
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = USER_SEQ_USER)
@@ -125,4 +131,38 @@ public class User {
         this.updatedAt = new Date();
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired(); //true olmalı olabilir
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked(); //true olmalı olabilir
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired(); //true olmalı olabilir
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return status == UserStatus.ACTIVE;
+    }
 }

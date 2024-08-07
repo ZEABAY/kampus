@@ -33,9 +33,9 @@ public class UserController implements BaseController<CreateUserRequest, Long, G
     }
 
     @Override
-    @GetMapping("/getALl")
+    @GetMapping("/getAll")
     public List<GetAllUsersResponse> getAll() {
-        return List.of();
+        return userService.getAll();
     }
 
     @Override

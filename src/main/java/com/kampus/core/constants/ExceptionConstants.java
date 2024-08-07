@@ -14,4 +14,7 @@ public class ExceptionConstants {
     public static final String EXCEPTION_CONSTANT_TIMESTAMP_KEY = "timestamp";
     public static final String EXCEPTION_CONSTANT_ERRORS_KEY = "errors";
     public static final String EXCEPTION_CONSTANT_USERNAME_EXIST = "This username is already taken";
+    public static final String EXCEPTION_CONSTANT_USER_NOT_FOUND = "User Not Found";
+    public static final String EXCEPTION_CONSTANT_AN_UNEXPECTED_ERROR_OCCURED = "An unexpected error occurred: "
+            ;
 }
