@@ -23,8 +23,8 @@ public class JwtService {
         return extractClaim(jwtToken, Claims::getSubject);
     }
 
-    public <T> T extractClaim(String jwtoken, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(jwtoken);
+    public <T> T extractClaim(String jwtToken, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(jwtToken);
         return claimsResolver.apply(claims);
     }
 

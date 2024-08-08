@@ -20,11 +20,7 @@ public class UserController implements BaseController<CreateUserRequest, Long, G
     private final UserService userService;
 
     @Override
-    @PostMapping("/create")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public void create(@RequestBody() @Valid() CreateUserRequest createUserRequest) {
-        userService.add(createUserRequest);
-    }
+    public void create(CreateUserRequest createUserRequest) {}
 
     @Override
     @GetMapping("/{id}")
