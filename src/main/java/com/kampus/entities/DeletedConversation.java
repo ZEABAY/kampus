@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.kampus.core.constants.entityConstants.DeletedConversationConstants.*;
-import static com.kampus.core.constants.entityConstants.InboxConstants.INBOX_COLUMN_INBOX_ID;
-import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+import static com.kampus.core.constants.EntityConstants.*;
 
 @Data
 @AllArgsConstructor

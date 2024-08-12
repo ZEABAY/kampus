@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.kampus.core.constants.entityConstants.CommentConstants.COMMENT_COLUMN_COMMENT_ID;
-import static com.kampus.core.constants.entityConstants.CommentMediaConstants.*;
+import static com.kampus.core.constants.EntityConstants.*;
+
 
 @Data
 @AllArgsConstructor

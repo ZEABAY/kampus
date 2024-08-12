@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-import static com.kampus.core.constants.entityConstants.InterestConstants.*;
+import static com.kampus.core.constants.EntityConstants.*;
 
 @Data
 @AllArgsConstructor
