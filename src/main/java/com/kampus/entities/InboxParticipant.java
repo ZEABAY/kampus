@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static com.kampus.core.constants.entityConstants.InboxConstants.INBOX_COLUMN_INBOX_ID;
-import static com.kampus.core.constants.entityConstants.InboxParticipantsConstants.*;
-import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+import static com.kampus.core.constants.EntityConstants.*;
+
 
 @Data
 @AllArgsConstructor

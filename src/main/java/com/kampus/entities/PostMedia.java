@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.kampus.core.constants.entityConstants.PostConstants.POST_COLUMN_POST_ID;
-import static com.kampus.core.constants.entityConstants.PostMediaConstants.*;
+import static com.kampus.core.constants.EntityConstants.*;
 
 
 @Data

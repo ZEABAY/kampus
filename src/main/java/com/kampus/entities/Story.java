@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.kampus.core.constants.entityConstants.StoryConstants.*;
-import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+import static com.kampus.core.constants.EntityConstants.*;
+
 
 @Data
 @AllArgsConstructor

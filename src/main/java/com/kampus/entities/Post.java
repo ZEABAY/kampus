@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.Set;
 
-import static com.kampus.core.constants.entityConstants.PostConstants.*;
-import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+import static com.kampus.core.constants.EntityConstants.*;
 
 
 @Data

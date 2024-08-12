@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static com.kampus.core.constants.entityConstants.CityConstants.CITY_COLUMN_CITY_ID;
-import static com.kampus.core.constants.entityConstants.UniversityConstants.*;
+import static com.kampus.core.constants.EntityConstants.*;
+
 
 @Data
 @AllArgsConstructor

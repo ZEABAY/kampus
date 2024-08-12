@@ -8,12 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import static com.kampus.core.constants.entityConstants.CommentConstants.COMMENT_COLUMN_COMMENT_ID;
-import static com.kampus.core.constants.entityConstants.MessageConstants.MESSAGE_COLUMN_MESSAGE_ID;
-import static com.kampus.core.constants.entityConstants.PostConstants.POST_COLUMN_POST_ID;
-import static com.kampus.core.constants.entityConstants.ReplyConstants.REPLY_COLUMN_REPLY_ID;
-import static com.kampus.core.constants.entityConstants.UserComplainReportConstants.*;
-import static com.kampus.core.constants.entityConstants.UserConstants.USER_COLUMN_USER_ID;
+import static com.kampus.core.constants.EntityConstants.*;
+
 
 @Data
 @AllArgsConstructor

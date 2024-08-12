@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static com.kampus.core.constants.entityConstants.CityConstants.*;
+import static com.kampus.core.constants.EntityConstants.*;
 
 
 @Data

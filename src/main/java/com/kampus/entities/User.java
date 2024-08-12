@@ -13,10 +13,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.kampus.core.constants.entityConstants.InterestConstants.INTEREST_COLUMN_INTEREST_ID;
-import static com.kampus.core.constants.entityConstants.MajorConstants.MAJOR_COLUMN_MAJOR_ID;
-import static com.kampus.core.constants.entityConstants.UniversityConstants.UNIVERSITY_COLUMN_UNIVERSITY_ID;
-import static com.kampus.core.constants.entityConstants.UserConstants.*;
+import static com.kampus.core.constants.EntityConstants.*;
+
 
 @Data
 @AllArgsConstructor
