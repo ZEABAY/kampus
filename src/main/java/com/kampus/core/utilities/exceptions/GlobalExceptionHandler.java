@@ -1,12 +1,9 @@
 package com.kampus.core.utilities.exceptions;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -45,20 +42,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InternalServerErrorException.class)
     public ProblemDetails handleInternalServerErrorException(InternalServerErrorException exc) {
         return new ProblemDetails(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), LocalDateTime.now(), exc.getMessage());
-    }
-
-    // 403 Forbidden
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler(AccessDeniedException.class)
-    public ProblemDetails handleAccessDeniedException(AccessDeniedException exc) {
-        return new ProblemDetails(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase(), LocalDateTime.now(), exc.getMessage());
-    }
-
-    // 401 UNAUTHORIZED
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(BadCredentialsException.class)
-    public ProblemDetails handleBadCredentialsException(BadCredentialsException exc) {
-        return new ProblemDetails(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase(), LocalDateTime.now(), exc.getMessage());
     }
 
     // 422 UNPROCESSABLE_ENTITY (Business Exceptions)
