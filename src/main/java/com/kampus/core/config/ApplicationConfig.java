@@ -1,5 +1,6 @@
 package com.kampus.core.config;
 
+import com.kampus.core.utilities.exceptions.BusinessException;
 import com.kampus.dataAccess.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static com.kampus.core.constants.ExceptionConstants.EXCEPTION_CONSTANT_USER_NOT_FOUND;
+import static com.kampus.core.handler.BusinessErrorCodes.USER_NOT_FOUND;
 
 @Configuration
 @RequiredArgsConstructor
@@ -22,8 +23,14 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException(EXCEPTION_CONSTANT_USER_NOT_FOUND));
+        return username -> userRepository.findByUsername(username)
+                .orElseThrow(() -> new BusinessException(
+                        USER_NOT_FOUND.getCode(),
+                        USER_NOT_FOUND.getHttpStatus(),
+                        USER_NOT_FOUND.getDescription()
+                ));
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

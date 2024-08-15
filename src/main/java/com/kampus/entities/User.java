@@ -44,7 +44,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column(name = USER_COLUMN_MAIL, nullable = false)
-    private String mail;
+    private String email;
 
     @Column(name = USER_COLUMN_FIRST_NAME, nullable = false)
     private String firstName;

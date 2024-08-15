@@ -1,9 +1,10 @@
 package com.kampus.api.controllers;
 
 import com.kampus.service.concretes.AuthenticationService;
+import com.kampus.service.requests.authentication.AuthenticationRequest;
+import com.kampus.service.requests.authentication.RegisterRequest;
 import com.kampus.service.responses.authentication.AuthenticationResponse;
-import com.kampus.service.rules.authentication.AuthenticationRequest;
-import com.kampus.service.rules.authentication.RegisterRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
+            @Valid @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(authenticationService.register(request));
     }

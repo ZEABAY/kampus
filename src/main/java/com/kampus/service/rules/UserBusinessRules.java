@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static com.kampus.core.constants.ExceptionConstants.EXCEPTION_CONSTANT_USERNAME_EXIST;
+import static com.kampus.core.handler.BusinessErrorCodes.USERNAME_ALREADY_EXISTS;
 
 @AllArgsConstructor
 @Service
@@ -17,7 +17,11 @@ public class UserBusinessRules {
 
     public void checkIfUsernameExists(String username) {
         if (this.userRepository.existsByUsername(username)) {
-            throw new BusinessException(EXCEPTION_CONSTANT_USERNAME_EXIST);
+            throw new BusinessException(
+                    USERNAME_ALREADY_EXISTS.getCode(),
+                    USERNAME_ALREADY_EXISTS.getHttpStatus(),
+                    USERNAME_ALREADY_EXISTS.getDescription()
+            );
         }
     }
 

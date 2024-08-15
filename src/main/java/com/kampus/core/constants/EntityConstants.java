@@ -2,13 +2,16 @@ package com.kampus.core.constants;
 
 import com.kampus.core.utilities.exceptions.BusinessException;
 
-import static com.kampus.core.constants.ExceptionConstants.EXCEPTION_CONSTANT_UTILITY_CLASS;
+import static com.kampus.core.handler.BusinessErrorCodes.UTILITY_CLASS_ERROR;
 
 public class EntityConstants {
 
-
     private EntityConstants() {
-        throw new BusinessException(EXCEPTION_CONSTANT_UTILITY_CLASS);
+        throw new BusinessException(
+                UTILITY_CLASS_ERROR.getCode(),
+                UTILITY_CLASS_ERROR.getHttpStatus(),
+                UTILITY_CLASS_ERROR.getDescription()
+        );
     }
 
 
