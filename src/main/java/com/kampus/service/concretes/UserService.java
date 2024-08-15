@@ -26,10 +26,6 @@ public class UserService implements BaseService<CreateUserRequest, Long, GetUser
     public void add(CreateUserRequest createUserRequest) {
         User user = this.modelMapperService.forRequest().map(createUserRequest, User.class);
 
-        //İş kulları
-        //this.userBusinessRules.checkIfUsernameExists(createUserRequest.username());
-
-
         this.userRepository.save(user);
     }
 
@@ -37,20 +33,16 @@ public class UserService implements BaseService<CreateUserRequest, Long, GetUser
     public GetUserByIdResponse getById(Long id) {
         User user = this.userRepository.findById(id).orElse(null);
 
-        GetUserByIdResponse response = this.modelMapperService.forResponse()
+        return this.modelMapperService.forResponse()
                 .map(user, GetUserByIdResponse.class);
-
-
-        return response;
     }
 
     @Override
     public List<GetAllUsersResponse> getAll() {
         List<User> users = this.userRepository.findAll();
-        List<GetAllUsersResponse> responses = users.stream()
-                .map(user -> this.modelMapperService.forResponse().map(user, GetAllUsersResponse.class)).toList();
 
-        return responses;
+        return users.stream()
+                .map(user -> this.modelMapperService.forResponse().map(user, GetAllUsersResponse.class)).toList();
     }
 
     @Override

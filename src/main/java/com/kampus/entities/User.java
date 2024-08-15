@@ -7,10 +7,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static com.kampus.core.constants.EntityConstants.*;
@@ -25,7 +29,7 @@ import static com.kampus.core.constants.EntityConstants.*;
         @Index(name = USER_IDX_USER_USERNAME, columnList = USER_COLUMN_USERNAME, unique = true)}
 
 )
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = USER_SEQ_USER)
@@ -68,7 +72,7 @@ public class User {
     @Column(name = USER_COLUMN_ROLE, nullable = false)
     private UserRoles role;
 
-    @Column(name = USER_COLUMN_IS_PRIVATE)
+    @Column(name = USER_COLUMN_IS_PRIVATE, nullable = false)
     private Boolean isPrivate;
 
     @Column(name = USER_COLUMN_CREATED_AT, nullable = false)
@@ -95,9 +99,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = MAJOR_COLUMN_MAJOR_ID, referencedColumnName = MAJOR_COLUMN_MAJOR_ID)
     private Major major;
-    // burda userinterest tablosunu spring üzerinden oluşturduk db ye gerek kalmadı
-    // kartezyen tablo gibi manytomany bir kullanıcı birden fazla hobiye sahip olabilir
-    // bir hobide birden fazla kullanıcı tarafından  kullanılabilir.
+
     @ManyToMany
     @JoinTable(
             name = USER_INTEREST_TABLE,
@@ -107,7 +109,7 @@ public class User {
     private Set<Interest> interests;
 
     @OneToMany(mappedBy = USER_MAP_USER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CommunityMember> communityMemberships = new HashSet<>();
+    private Set<CommunityMember> communityMemberships;
 
     @OneToMany(mappedBy = USER_MAP_USER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PostLike> postLikes;
@@ -125,5 +127,40 @@ public class User {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = new Date();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
     }
 }

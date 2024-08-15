@@ -80,13 +80,12 @@
             <artifactId>modelmapper</artifactId>
             <version>3.1.1</version>
         </dependency>
-        <!-- spring security core https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+        <!-- spring security core https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-         -->
-        <!-- JWT
+        <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -102,7 +101,6 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
         </dependency>
--->
     </dependencies>
 
     <build>
