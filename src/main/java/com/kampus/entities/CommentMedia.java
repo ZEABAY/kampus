@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -36,10 +37,6 @@ public class CommentMedia {
 
     @Column(name = COMMENT_MEDIA_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
 }

@@ -48,7 +48,7 @@ public class EntityConstants {
      * COLUMN
      */
     public static final String COMMENT_COLUMN_COMMENT_ID = "comment_id";
-    public static final String COMMENT_COLUMN_TEXT_CONTENT = "text_content";
+    public static final String COMMENT_COLUMN_CONTENT_TYPE = "content_type";
     public static final String COMMENT_COLUMN_CREATED_AT = "created_at";
 
     public static final String COMMENT_MAP_COMMENT = "comment";
@@ -165,7 +165,7 @@ public class EntityConstants {
     /**
      * COLUMN
      */
-    public static final String COMMUNITY_MEMBER_COLUMN_COMMUNITY_ID = "community_member_id";
+    public static final String COMMUNITY_MEMBER_COLUMN_COMMUNITY_MEMBER_ID = "community_member_id";
     public static final String COMMUNITY_MEMBER_COLUMN_COMMUNITY_JOINED_AT = "joined_at";
     public static final String COMMUNITY_MEMBER_COLUMN_ROLE = "role";
 
@@ -174,9 +174,8 @@ public class EntityConstants {
      * INDEX
      */
 
-    public static final String COMMUNITY_IDX_COMMENT_ID = "idx_community_member_id";
-
-    public static final String COMMUNITY_IDX_USER_ID = "idx_community_user_id";
+    public static final String COMMUNITY_MEMBER_IDX_USER_ID = "idx_community_user_id";
+    public static final String COMMUNITY_MEMBER_IDX_COMMUNITY_ID = "idx_community_community_id";
 
 
     /**
@@ -256,8 +255,8 @@ public class EntityConstants {
      * INDEX
      */
 
-    public static final String FOLLOWER_IDX_FOLLOWER = "idx_follower";
-    public static final String FOLLOWER_IDX_FOLLOWED = "idx_followed";
+    public static final String FOLLOWER_IDX_FOLLOWER = "idx_follower_id";
+    public static final String FOLLOWER_IDX_FOLLOWED = "idx_followed_id";
     public static final String FOLLOWER_IDX_STATUS = "idx_status";
 
     /**
@@ -638,6 +637,13 @@ public class EntityConstants {
     public static final String USER_BAN_COLUMN_BANNED_USER_ID = "banned_user_id";
     public static final String USER_BAN_COLUMN_BANNED_BY_USER_ID = "banned_by_user_id";
 
+    /**
+     * INDEX
+     */
+
+    public static final String USER_BAN_IDX_BANNED_USER = "idx_banned_user";
+    public static final String USER_BAN_IDX_BANNED_BY_USER = "idx_banned_by_user";
+    public static final String USER_BAN_IDX_BANNED_AT = "idx_story_banned_at";
 
     /**
      * SEQUENCE
@@ -662,6 +668,14 @@ public class EntityConstants {
     public static final String USER_COMPLAIN_REPORT_COLUMN_CREATED_AT = "created_at";
     public static final String USER_COMPLAIN_REPORT_COLUMN_REPORTER_ID = "reporter_id";
     public static final String USER_COMPLAIN_REPORT_COLUMN_REPORTED_ID = "reported_id";
+
+    /**
+     * INDEX
+     */
+
+    public static final String USER_COMPLAIN_REPORT_IDX_REPORTER_USER = "idx_reporter_user";
+    public static final String USER_COMPLAIN_REPORT_IDX_REPORTED_USER = "idx_reported_user";
+    public static final String USER_COMPLAIN_REPORT_IDX_CREATED_AT = "idx_story_created_at";
 
     /**
      * SEQUENCE

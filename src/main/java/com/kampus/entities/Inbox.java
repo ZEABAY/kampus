@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
@@ -26,9 +28,11 @@ public class Inbox {
     @Column(name = INBOX_COLUMN_INBOX_ID)
     private Long inboxId;
 
+    //! çok sık güncelleniyorsa performans kaybına yol açar
     @Column(name = INBOX_COLUMN_LAST_MESSAGE)
     private String lastMessage;
 
+    //! çok sık güncelleniyorsa performans kaybına yol açar
     @ManyToOne
     @JoinColumn(name = INBOX_COLUMN_LAST_SEND_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
     private User lastSendUser;
@@ -37,23 +41,14 @@ public class Inbox {
     @Column(name = INBOX_COLUMN_INBOX_TYPE, nullable = false)
     private InboxType inboxType;
 
-    @Column(name = INBOX_COLUMN_CREATED_AT)
+    @Column(name = INBOX_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
 
-    @Column(name = INBOX_COLUMN_UPDATED_AT, nullable = false)
+    //! null ise daha önce güncellenmedi
+    @Column(name = INBOX_COLUMN_UPDATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
-    }
-
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -27,7 +28,7 @@ public class PostMedia {
     private Long mediaId;
 
     @ManyToOne
-    @JoinColumn(name = POST_COLUMN_POST_ID, nullable = false, referencedColumnName = POST_COLUMN_POST_ID)
+    @JoinColumn(name = POST_COLUMN_POST_ID, referencedColumnName = POST_COLUMN_POST_ID, nullable = false)
     private Post post;
 
     @Enumerated(EnumType.STRING)
@@ -39,11 +40,6 @@ public class PostMedia {
 
     @Column(name = POST_MEDIA_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
-
 }

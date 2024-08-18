@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -31,6 +32,7 @@ public class UserVerification {
 
     @Column(name = USER_VERIFICATION_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
 
 
@@ -39,7 +41,6 @@ public class UserVerification {
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = new Date();
         this.haveUsed = false;
     }
 }

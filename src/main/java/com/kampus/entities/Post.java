@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Set;
@@ -31,7 +33,8 @@ public class Post {
     @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
-    @Column(name = POST_COLUMN_CONTENT_TYPE)
+    //! Enum olmalı
+    @Column(name = POST_COLUMN_CONTENT_TYPE, nullable = false)
     private String contentType;
 
     @Column(name = POST_COLUMN_TEXT_CONTENT)
@@ -53,15 +56,18 @@ public class Post {
 
     @Column(name = POST_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
 
+    //! null ise daha önce güncellenmedi
     @Column(name = POST_COLUMN_UPDATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date updatedAt;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = new Date();
+        this.likeCount = 0;
+        this.commentCount = 0;
     }
-
 }

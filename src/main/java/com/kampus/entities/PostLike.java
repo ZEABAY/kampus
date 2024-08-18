@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -26,21 +27,16 @@ public class PostLike {
     private Long likeId;
 
     @ManyToOne
-    @JoinColumn(name = POST_COLUMN_POST_ID, nullable = false)
+    @JoinColumn(name = POST_COLUMN_POST_ID, referencedColumnName = POST_COLUMN_POST_ID, nullable = false)
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = USER_COLUMN_USER_ID, nullable = false, referencedColumnName = USER_COLUMN_USER_ID)
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
 
     @Column(name = POST_LIKE_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
-
 }

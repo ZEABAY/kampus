@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 
@@ -14,16 +15,12 @@ import static com.kampus.core.constants.EntityConstants.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = SEEN_MESSAGE_TABLE, indexes = {
-        @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_MESSAGE, columnList = MESSAGE_COLUMN_MESSAGE_ID),
-        @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_USER, columnList = USER_COLUMN_USER_ID),
-        @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_SEEN_AT, columnList = SEEN_MESSAGE_COLUMN_SEEN_AT)
-})
+@Table(name = SEEN_MESSAGE_TABLE, indexes = {@Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_MESSAGE, columnList = MESSAGE_COLUMN_MESSAGE_ID), @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_USER, columnList = USER_COLUMN_USER_ID), @Index(name = SEEN_MESSAGE_IDX_SEEN_MESSAGE_SEEN_AT, columnList = SEEN_MESSAGE_COLUMN_SEEN_AT)})
 public class SeenMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEEN_MESSAGE_SEQ_SEEN_MESSAGE)
     @SequenceGenerator(name = SEEN_MESSAGE_SEQ_SEEN_MESSAGE, sequenceName = SEEN_MESSAGE_SEQ_SEEN_MESSAGE_ID, allocationSize = SEEN_MESSAGE_SEQ_SEEN_MESSAGE_ID_ALLOCATION_SIZE)
-    @Column(name = SEEN_MESSAGE_COLUMN_SEEN_MESSAGE_ID)
+    @Column(name = SEEN_MESSAGE_COLUMN_SEEN_MESSAGE_ID, nullable = false)
     private Long seenMessageId;
 
     @ManyToOne
@@ -34,12 +31,10 @@ public class SeenMessage {
     @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
+    //* neden nullable false ? ya görülmedi ise ?
     @Column(name = SEEN_MESSAGE_COLUMN_SEEN_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date seenAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.seenAt = new Date();
-    }
 }

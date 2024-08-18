@@ -19,12 +19,12 @@ public class University {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = UNIVERSITY_SEQ_UNIVERSITY)
     @SequenceGenerator(name = UNIVERSITY_SEQ_UNIVERSITY, sequenceName = UNIVERSITY_SEQ_UNIVERSITY_ID, allocationSize = UNIVERSITY_SEQ_UNIVERSITY_ID_ALLOCATION_SIZE)
     @Column(name = UNIVERSITY_COLUMN_UNIVERSITY_ID, nullable = false)
-    private int universityID;
+    private int universityId;
 
-    @Column(name = UNIVERSITY_COLUMN_UNIVERSITY_NAME, nullable = false)
+    @Column(name = UNIVERSITY_COLUMN_UNIVERSITY_NAME, nullable = false, unique = true)
     private String universityName;
 
     @ManyToOne
-    @JoinColumn(name = CITY_COLUMN_CITY_ID, referencedColumnName = CITY_COLUMN_CITY_ID)
+    @JoinColumn(name = CITY_COLUMN_CITY_ID, referencedColumnName = CITY_COLUMN_CITY_ID, nullable = false)
     private City city;
 }

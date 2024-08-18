@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.Set;
@@ -36,21 +37,20 @@ public class Comment {
     @JoinColumn(name = USER_COLUMN_USER_ID, nullable = false, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
+    //! textContext contentType olarak değiştirildi
     @Enumerated(EnumType.STRING)
-    @Column(name = COMMENT_COLUMN_TEXT_CONTENT, nullable = false)
-    private ContentType textContent;
+    @Column(name = COMMENT_COLUMN_CONTENT_TYPE, nullable = false)
+    private ContentType contentType;
 
 
     @OneToMany(mappedBy = COMMENT_MAP_COMMENT, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CommentLike> likes;
 
+    //! @CreationTimestamp ve @UpdateTimestamp
     @Column(name = COMMENT_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
 
 }

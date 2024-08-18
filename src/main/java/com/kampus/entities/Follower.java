@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -27,22 +28,19 @@ public class Follower {
     private Long followerId;
 
     @ManyToOne
-    @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWER_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
+    @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWER_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User followerUser;
 
     @ManyToOne
-    @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWED_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
+    @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWED_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User followedUser;
 
+    //*  statusten kasıt ne Enum olabilir mi ??
     @Column(name = FOLLOWER_COLUMN_STATUS)
     private String status;
 
-    @Column(name = FOLLOWER_COLUMN_CREATED_AT)
+    @Column(name = FOLLOWER_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
 }

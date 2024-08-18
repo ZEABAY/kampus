@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -16,14 +17,14 @@ import static com.kampus.core.constants.EntityConstants.*;
 @NoArgsConstructor
 @Entity
 @Table(name = COMMUNITY_MEMBER_TABLE, indexes = {
-        @Index(name = COMMUNITY_IDX_USER_ID, columnList = USER_COLUMN_USER_ID),
-        @Index(name = COMMUNITY_IDX_COMMENT_ID, columnList = COMMUNITY_COLUMN_COMMUNITY_ID)
+        @Index(name = COMMUNITY_MEMBER_IDX_USER_ID, columnList = USER_COLUMN_USER_ID),
+        @Index(name = COMMUNITY_MEMBER_IDX_COMMUNITY_ID, columnList = COMMUNITY_COLUMN_COMMUNITY_ID)
 })
 public class CommunityMember {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = COMMUNITY_MEMBER_SEQ_COMMUNITY)
     @SequenceGenerator(name = COMMUNITY_MEMBER_SEQ_COMMUNITY, sequenceName = COMMUNITY_MEMBER_SEQ_COMMUNITY_ID, allocationSize = COMMUNITY_MEMBER_SEQ_COMMUNITY_ID_ALLOCATION_SIZE)
-    @Column(name = COMMUNITY_MEMBER_COLUMN_COMMUNITY_ID, unique = true, nullable = false)
+    @Column(name = COMMUNITY_MEMBER_COLUMN_COMMUNITY_MEMBER_ID, unique = true, nullable = false)
     private Long communityMemberId;
 
     @ManyToOne
@@ -40,10 +41,6 @@ public class CommunityMember {
 
     @Column(name = COMMUNITY_MEMBER_COLUMN_COMMUNITY_JOINED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date joinedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.joinedAt = new Date();
-    }
 }

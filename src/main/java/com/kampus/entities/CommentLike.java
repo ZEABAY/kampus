@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -25,6 +26,7 @@ public class CommentLike {
     @Column(name = COMMENT_LIKE_COLUMN_LIKE_ID, unique = true, nullable = false)
     private Long likeId;
 
+    //! referencedColumnName default olarak zaten id kullanıyor kullanmaya gerek yok
     @ManyToOne
     @JoinColumn(name = COMMENT_COLUMN_COMMENT_ID, nullable = false, referencedColumnName = COMMENT_COLUMN_COMMENT_ID)
     private Comment comment;
@@ -35,11 +37,6 @@ public class CommentLike {
 
     @Column(name = COMMENT_LIKE_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
 }

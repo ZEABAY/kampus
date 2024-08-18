@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.Set;
@@ -24,16 +25,16 @@ public class Community {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = COMMUNITY_SEQ_COMMUNITY)
     @SequenceGenerator(name = COMMUNITY_SEQ_COMMUNITY, sequenceName = COMMUNITY_SEQ_COMMUNITY_ID, allocationSize = COMMUNITY_SEQ_COMMUNITY_ID_ALLOCATION_SIZE)
     @Column(name = COMMUNITY_COLUMN_COMMUNITY_ID, unique = true, nullable = false)
-    private Long commentId;
+    private Long communityId;
 
-    @Column(name = COMMUNITY_COLUMN_NAME)
+    @Column(name = COMMUNITY_COLUMN_NAME, nullable = false)
     private String name;
 
     @Column(name = COMMUNITY_COLUMN_DESCRIPTION)
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = COMMUNITY_COLUMN_COMMUNITY_CREATED_BY, referencedColumnName = USER_COLUMN_USER_ID)
+    @JoinColumn(name = COMMUNITY_COLUMN_COMMUNITY_CREATED_BY, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
     @OneToMany(mappedBy = COMMUNITY_MAP_COMMUNITY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -41,11 +42,6 @@ public class Community {
 
     @Column(name = COMMUNITY_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
-
 }

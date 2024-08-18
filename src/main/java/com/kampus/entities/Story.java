@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -22,27 +23,22 @@ public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = STORY_SEQ_STORY)
     @SequenceGenerator(name = STORY_SEQ_STORY, sequenceName = STORY_SEQ_STORY_ID, allocationSize = STORY_SEQ_STORY_ID_ALLOCATION_SIZE)
-    @Column(name = STORY_COLUMN_STORY_ID)
-    private Long storiesId;
+    @Column(name = STORY_COLUMN_STORY_ID, nullable = false)
+    private Long storyId;
 
     @ManyToOne
-    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
+    @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
-    @Column(name = STORY_COLUMN_STORY_TYPE)
+    //! Enum olmalı
+    @Column(name = STORY_COLUMN_STORY_TYPE, nullable = false)
     private String storyType;
 
-    @Column(name = STORY_COLUMN_STORY_URL)
+    @Column(name = STORY_COLUMN_STORY_URL, nullable = false)
     private String url;
 
     @Column(name = STORY_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
-
-
 }

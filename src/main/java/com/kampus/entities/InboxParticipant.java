@@ -20,7 +20,7 @@ public class InboxParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT)
     @SequenceGenerator(name = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT, sequenceName = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT_ID, allocationSize = INBOX_PARTICIPANT_SEQ_INBOX_PARTICIPANT_ID_ALLOCATION_SIZE)
-    @Column(name = INBOX_PARTICIPANT_COLUMN_INBOX_PARTICIPANT_ID)
+    @Column(name = INBOX_PARTICIPANT_COLUMN_INBOX_PARTICIPANT_ID,nullable = false)
     private Long inboxPartId;
 
     @ManyToOne

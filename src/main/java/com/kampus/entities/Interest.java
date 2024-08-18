@@ -21,13 +21,13 @@ public class Interest {
     @Column(name = INTEREST_COLUMN_INTEREST_ID, nullable = false, unique = true)
     private int interestId;
 
-    @Column(name = INTEREST_COLUMN_INTEREST_NAME)
+    @Column(name = INTEREST_COLUMN_INTEREST_NAME, nullable = false)
     private String interestName;
 
-    @Column(name = INTEREST_COLUMN_INTEREST_TYPE)
+    @Column(name = INTEREST_COLUMN_INTEREST_TYPE, nullable = false)
     private String interestType;
 
-    @ManyToMany(mappedBy = INTEREST_MAP_INTERESTS)
+    @ManyToMany(mappedBy = INTEREST_MAP_INTERESTS, cascade = CascadeType.ALL)
     private Set<User> users;
 
 }

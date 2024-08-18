@@ -20,6 +20,7 @@ public class City {
     @Column(name = CITY_COLUMN_CITY_ID)
     private int cityId;
 
-    @Column(name = CITY_COLUMN_CITY_NAME)
+    //! EKLENDI nullable = false
+    @Column(name = CITY_COLUMN_CITY_NAME, nullable = false)
     private String cityName;
 }

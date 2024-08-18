@@ -1,12 +1,13 @@
 package com.kampus.entities;
 
-
 import com.kampus.core.utilities.enums.UserRoles;
 import com.kampus.core.utilities.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +20,6 @@ import java.util.Set;
 
 import static com.kampus.core.constants.EntityConstants.*;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +27,6 @@ import static com.kampus.core.constants.EntityConstants.*;
 @Table(name = USER_TABLE, indexes = {
         @Index(name = USER_IDX_USER_MAIL, columnList = USER_COLUMN_MAIL, unique = true),
         @Index(name = USER_IDX_USER_USERNAME, columnList = USER_COLUMN_USERNAME, unique = true)}
-
 )
 public class User implements UserDetails {
 
@@ -43,7 +42,7 @@ public class User implements UserDetails {
     @Column(name = USER_COLUMN_PASSWORD, nullable = false)
     private String password;
 
-    @Column(name = USER_COLUMN_MAIL, nullable = false)
+    @Column(name = USER_COLUMN_MAIL, nullable = false, unique = true)
     private String email;
 
     @Column(name = USER_COLUMN_FIRST_NAME, nullable = false)
@@ -77,11 +76,14 @@ public class User implements UserDetails {
 
     @Column(name = USER_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
 
 
-    @Column(name = USER_COLUMN_UPDATED_AT, nullable = false)
+    //! null ise daha önce güncellenmedi
+    @Column(name = USER_COLUMN_UPDATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date updatedAt;
 
 
@@ -93,11 +95,11 @@ public class User implements UserDetails {
     private UserStatus status;
 
     @ManyToOne
-    @JoinColumn(name = UNIVERSITY_COLUMN_UNIVERSITY_ID)
+    @JoinColumn(name = UNIVERSITY_COLUMN_UNIVERSITY_ID, nullable = false)
     private University university;
 
     @ManyToOne
-    @JoinColumn(name = MAJOR_COLUMN_MAJOR_ID, referencedColumnName = MAJOR_COLUMN_MAJOR_ID)
+    @JoinColumn(name = MAJOR_COLUMN_MAJOR_ID, referencedColumnName = MAJOR_COLUMN_MAJOR_ID, nullable = false)
     private Major major;
 
     @ManyToMany
@@ -117,16 +119,9 @@ public class User implements UserDetails {
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
         this.role = UserRoles.USER;
         this.status = UserStatus.INACTIVE;
         this.isPrivate = false;
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
     }
 
     @Override
@@ -144,23 +139,28 @@ public class User implements UserDetails {
         return this.username;
     }
 
+    //! Yorumlar ihtiyaç oldukça açılacak
     @Override
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();
+        //return this.status != UserStatus.EXPIRED
     }
 
     @Override
     public boolean isAccountNonLocked() {
         return UserDetails.super.isAccountNonLocked();
+        //return this.status != UserStatus.LOCKED
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
         return UserDetails.super.isCredentialsNonExpired();
+        //return this.status != UserStatus.CREDENTIALS_EXPIRED
     }
 
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+        //return this.status == UserStatus.ACTIVE
     }
 }

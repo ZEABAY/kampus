@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class DeletedMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = DELETED_MESSAGE_SEQ_DELETED_MESSAGE)
     @SequenceGenerator(name = DELETED_MESSAGE_SEQ_DELETED_MESSAGE, sequenceName = DELETED_MESSAGE_SEQ_DELETED_MESSAGE_ID, allocationSize = DELETED_MESSAGE_SEQ_DELETED_MESSAGE_ID_ALLOCATION_SIZE)
-    @Column(name = DELETED_MESSAGE_COLUMN_DELETED_MESSAGE_ID)
+    @Column(name = DELETED_MESSAGE_COLUMN_DELETED_MESSAGE_ID, nullable = false)
     private Long deleteMessageId;
 
     @ManyToOne
@@ -34,6 +35,7 @@ public class DeletedMessage {
     @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
+    @CreationTimestamp
     @Column(name = DELETED_MESSAGE_COLUMN_DELETED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
