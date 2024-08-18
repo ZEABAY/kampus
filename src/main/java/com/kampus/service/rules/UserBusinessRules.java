@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static com.kampus.core.handler.BusinessErrorCodes.USERNAME_ALREADY_EXISTS;
+import static com.kampus.core.handler.BusinessErrorCodes.USER_NOT_FOUND;
 
 @AllArgsConstructor
 @Service
@@ -28,4 +31,16 @@ public class UserBusinessRules {
     public void encodePassword(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
     }
+
+    public void checkIfUserExist(long userId) {
+        Optional<User> userOptional = this.userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            throw new BusinessException(
+                    USER_NOT_FOUND.getCode(),
+                    USER_NOT_FOUND.getHttpStatus(),
+                    USER_NOT_FOUND.getDescription()
+            );
+        }
+    }
+
 }
