@@ -8,6 +8,7 @@ class KampusApplicationTests {
 
     @Test
     void contextLoads() {
+        // NOT IMPLEMENTED TEST
     }
 
 }
