@@ -1,12 +1,12 @@
 package com.kampus.core.utilities.enums;
 
 public enum ReportType {
-    Nefret,
-    SiddetSoylemi,
-    Taciz,
-    DiniDegerler,
-    Fake,
-    Gizlilik,
-    Spam,
-    Diger
+    HATE,
+    HATE_SPEECH,
+    HARASSMENT,
+    RELIGIOUS_VALUES,
+    FAKE,
+    PRIVACY,
+    SPAM,
+    OTHER
 }
