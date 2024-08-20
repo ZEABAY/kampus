@@ -51,15 +51,9 @@ public class Message {
     @CreationTimestamp
     private Date createdAt;
 
-    //! null ise daha önce güncellenmedi
     @Column(name = MESSAGE_COLUMN_UPDATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
-
-    //* fazla mı ?
-    @Column(name = MESSAGE_COLUMN_IS_DELETED, nullable = false)
-    private Boolean isDeleted;
-
 }
 

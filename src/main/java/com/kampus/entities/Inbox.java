@@ -28,11 +28,9 @@ public class Inbox {
     @Column(name = INBOX_COLUMN_INBOX_ID)
     private Long inboxId;
 
-    //! çok sık güncelleniyorsa performans kaybına yol açar
     @Column(name = INBOX_COLUMN_LAST_MESSAGE)
     private String lastMessage;
 
-    //! çok sık güncelleniyorsa performans kaybına yol açar
     @ManyToOne
     @JoinColumn(name = INBOX_COLUMN_LAST_SEND_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
     private User lastSendUser;
@@ -46,7 +44,6 @@ public class Inbox {
     @CreationTimestamp
     private Date createdAt;
 
-    //! null ise daha önce güncellenmedi
     @Column(name = INBOX_COLUMN_UPDATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp

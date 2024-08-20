@@ -37,10 +37,12 @@ public class Comment {
     @JoinColumn(name = USER_COLUMN_USER_ID, nullable = false, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
-    //! textContext contentType olarak değiştirildi
     @Enumerated(EnumType.STRING)
     @Column(name = COMMENT_COLUMN_CONTENT_TYPE, nullable = false)
     private ContentType contentType;
+
+    @Column(name = COMMENT_COLUMN_COMMENT_CONTEXT, nullable = false)
+    private String commentContext;
 
 
     @OneToMany(mappedBy = COMMENT_MAP_COMMENT, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -51,6 +53,4 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
-
-
 }

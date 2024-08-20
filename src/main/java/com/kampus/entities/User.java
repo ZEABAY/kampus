@@ -80,15 +80,10 @@ public class User implements UserDetails {
     private Date createdAt;
 
 
-    //! null ise daha önce güncellenmedi
     @Column(name = USER_COLUMN_UPDATED_AT)
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
-
-
-    @Column(name = USER_COLUMN_CURRENT_SITUATION)
-    private String currentSituation;
 
     @Enumerated(EnumType.STRING)
     @Column(name = USER_COLUMN_STATUS, nullable = false)

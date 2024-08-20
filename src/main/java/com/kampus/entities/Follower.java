@@ -1,5 +1,6 @@
 package com.kampus.entities;
 
+import com.kampus.core.utilities.enums.FollowerStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,9 +36,9 @@ public class Follower {
     @JoinColumn(name = FOLLOWER_COLUMN_FOLLOWED_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User followedUser;
 
-    //*  statusten kasıt ne Enum olabilir mi ??
+    @Enumerated(EnumType.STRING)
     @Column(name = FOLLOWER_COLUMN_STATUS)
-    private String status;
+    private FollowerStatus status;
 
     @Column(name = FOLLOWER_COLUMN_CREATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

@@ -20,7 +20,7 @@ public class Major {
     @Column(name = MAJOR_COLUMN_MAJOR_ID, unique = true, nullable = false)
     private int majorId;
 
-    @Column(name = MAJOR_COLUMN_MAJOR_NAME, unique = true, nullable = false)
+    @Column(name = MAJOR_COLUMN_MAJOR_NAME, unique = true, nullable = false, length = 64)
     private String majorName;
 
 }

@@ -49,6 +49,7 @@ public class EntityConstants {
      */
     public static final String COMMENT_COLUMN_COMMENT_ID = "comment_id";
     public static final String COMMENT_COLUMN_CONTENT_TYPE = "content_type";
+    public static final String COMMENT_COLUMN_COMMENT_CONTEXT = "comment_context";
     public static final String COMMENT_COLUMN_CREATED_AT = "created_at";
 
     public static final String COMMENT_MAP_COMMENT = "comment";
@@ -340,7 +341,6 @@ public class EntityConstants {
      * COLUMN
      */
     public static final String INTEREST_COLUMN_INTEREST_ID = "interest_id";
-    public static final String INTEREST_COLUMN_INTEREST_NAME = "interest_name";
     public static final String INTEREST_COLUMN_INTEREST_TYPE = "interest_type";
 
     public static final String INTEREST_MAP_INTERESTS = "interests";
@@ -392,7 +392,6 @@ public class EntityConstants {
     public static final String MESSAGE_COLUMN_MESSAGE_TYPE = "message_type";
     public static final String MESSAGE_COLUMN_CREATED_AT = "created_at";
     public static final String MESSAGE_COLUMN_UPDATED_AT = "updated_at";
-    public static final String MESSAGE_COLUMN_IS_DELETED = "is_deleted";
 
 
     /**
@@ -664,6 +663,8 @@ public class EntityConstants {
      * COLUMN
      */
     public static final String USER_COMPLAIN_REPORT_COLUMN_REPORT_ID = "report_id";
+    public static final String USER_COMPLAIN_REPORT_COLUMN_REPORTABLE_ID = "reportable_id";
+    public static final String USER_COMPLAIN_REPORT_COLUMN_REPORTED_CONTENT = "reported_content";
     public static final String USER_COMPLAIN_REPORT_COLUMN_REPORT_TYPE = "report_type";
     public static final String USER_COMPLAIN_REPORT_COLUMN_CREATED_AT = "created_at";
     public static final String USER_COMPLAIN_REPORT_COLUMN_REPORTER_ID = "reporter_id";
@@ -711,7 +712,6 @@ public class EntityConstants {
     public static final String USER_COLUMN_IS_PRIVATE = "is_private";
     public static final String USER_COLUMN_CREATED_AT = "created_at";
     public static final String USER_COLUMN_UPDATED_AT = "updated_at";
-    public static final String USER_COLUMN_CURRENT_SITUATION = "current_situation";
     public static final String USER_COLUMN_STATUS = "status";
 
     public static final String USER_MAP_USER = "user";

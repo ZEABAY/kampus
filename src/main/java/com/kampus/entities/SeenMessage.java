@@ -31,8 +31,7 @@ public class SeenMessage {
     @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
-    //* neden nullable false ? ya görülmedi ise ?
-    @Column(name = SEEN_MESSAGE_COLUMN_SEEN_AT, nullable = false)
+    @Column(name = SEEN_MESSAGE_COLUMN_SEEN_AT)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date seenAt;

@@ -1,5 +1,6 @@
 package com.kampus.entities;
 
+import com.kampus.core.utilities.enums.InterestType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,11 +22,9 @@ public class Interest {
     @Column(name = INTEREST_COLUMN_INTEREST_ID, nullable = false, unique = true)
     private int interestId;
 
-    @Column(name = INTEREST_COLUMN_INTEREST_NAME, nullable = false)
-    private String interestName;
-
+    @Enumerated(EnumType.STRING)
     @Column(name = INTEREST_COLUMN_INTEREST_TYPE, nullable = false)
-    private String interestType;
+    private InterestType interestType;
 
     @ManyToMany(mappedBy = INTEREST_MAP_INTERESTS, cascade = CascadeType.ALL)
     private Set<User> users;

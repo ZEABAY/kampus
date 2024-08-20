@@ -27,10 +27,10 @@ public class Community {
     @Column(name = COMMUNITY_COLUMN_COMMUNITY_ID, unique = true, nullable = false)
     private Long communityId;
 
-    @Column(name = COMMUNITY_COLUMN_NAME, nullable = false)
+    @Column(name = COMMUNITY_COLUMN_NAME, nullable = false, length = 64)
     private String name;
 
-    @Column(name = COMMUNITY_COLUMN_DESCRIPTION)
+    @Column(name = COMMUNITY_COLUMN_DESCRIPTION, length = 512)
     private String description;
 
     @ManyToOne

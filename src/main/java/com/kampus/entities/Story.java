@@ -1,5 +1,6 @@
 package com.kampus.entities;
 
+import com.kampus.core.utilities.enums.ContentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +31,9 @@ public class Story {
     @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
     private User user;
 
-    //! Enum olmalı
+    @Enumerated(EnumType.STRING)
     @Column(name = STORY_COLUMN_STORY_TYPE, nullable = false)
-    private String storyType;
+    private ContentType storyType;
 
     @Column(name = STORY_COLUMN_STORY_URL, nullable = false)
     private String url;

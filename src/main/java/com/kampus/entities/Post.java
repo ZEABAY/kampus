@@ -1,5 +1,6 @@
 package com.kampus.entities;
 
+import com.kampus.core.utilities.enums.ContentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,11 +34,11 @@ public class Post {
     @JoinColumn(name = USER_COLUMN_USER_ID, referencedColumnName = USER_COLUMN_USER_ID)
     private User user;
 
-    //! Enum olmalı
+    @Enumerated(EnumType.STRING)
     @Column(name = POST_COLUMN_CONTENT_TYPE, nullable = false)
-    private String contentType;
+    private ContentType contentType;
 
-    @Column(name = POST_COLUMN_TEXT_CONTENT)
+    @Column(name = POST_COLUMN_TEXT_CONTENT, nullable = false)
     private String textContent;
 
     @OneToMany(mappedBy = POST_MAP_POSTS, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,10 +49,10 @@ public class Post {
 
 
     @Column(name = POST_COLUMN_LIKE_COUNT, nullable = false)
-    private Integer likeCount;
+    private int likeCount;
 
     @Column(name = POST_COLUMN_COMMENT_COUNT, nullable = false)
-    private Integer commentCount;
+    private int commentCount;
 
 
     @Column(name = POST_COLUMN_CREATED_AT, nullable = false)
@@ -59,7 +60,6 @@ public class Post {
     @CreationTimestamp
     private Date createdAt;
 
-    //! null ise daha önce güncellenmedi
     @Column(name = POST_COLUMN_UPDATED_AT, nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp

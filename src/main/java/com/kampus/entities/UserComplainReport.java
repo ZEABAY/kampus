@@ -1,6 +1,7 @@
 package com.kampus.entities;
 
 import com.kampus.core.utilities.enums.ReportType;
+import com.kampus.core.utilities.enums.Reportable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,24 +31,13 @@ public class UserComplainReport {
 
     @Enumerated(EnumType.STRING)
     @Column(name = USER_COMPLAIN_REPORT_COLUMN_REPORT_TYPE, nullable = false)
-    private ReportType reportType;
+    private Reportable reportableType;
 
+    @Column(name = USER_COMPLAIN_REPORT_COLUMN_REPORTABLE_ID, nullable = false)
+    private Long reportableId;
 
-    @ManyToOne
-    @JoinColumn(name = POST_COLUMN_POST_ID, referencedColumnName = POST_COLUMN_POST_ID)
-    private Post post;
-
-    @ManyToOne
-    @JoinColumn(name = COMMENT_COLUMN_COMMENT_ID, referencedColumnName = COMMENT_COLUMN_COMMENT_ID)
-    private Comment comment;
-
-    @ManyToOne
-    @JoinColumn(name = MESSAGE_COLUMN_MESSAGE_ID, referencedColumnName = MESSAGE_COLUMN_MESSAGE_ID)
-    private Message message;
-
-    @ManyToOne
-    @JoinColumn(name = REPLY_COLUMN_REPLY_ID, referencedColumnName = REPLY_COLUMN_REPLY_ID)
-    private Reply reply;
+    @Column(name = USER_COMPLAIN_REPORT_COLUMN_REPORTED_CONTENT, nullable = false)
+    private ReportType reportedContent;
 
     @ManyToOne
     @JoinColumn(name = USER_COMPLAIN_REPORT_COLUMN_REPORTER_ID, referencedColumnName = USER_COLUMN_USER_ID, nullable = false)
