@@ -33,7 +33,11 @@ public class UserController implements BaseController<CreateUserRequest, Long, G
     @Override
     @GetMapping("/{id}")
     public GetUserByIdResponse getById(@PathVariable() Long id) {
-        return null;
+        throw new BusinessException(
+                NO_CODE.getCode(),
+                NO_CODE.getHttpStatus(),
+                NO_CODE.getDescription()
+        );
     }
 
     @Override

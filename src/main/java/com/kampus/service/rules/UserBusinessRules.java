@@ -8,9 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
-import static com.kampus.core.handler.BusinessErrorCodes.USERNAME_ALREADY_EXISTS;
-import static com.kampus.core.handler.BusinessErrorCodes.USER_NOT_FOUND;
+import static com.kampus.core.handler.BusinessErrorCodes.*;
 
 @AllArgsConstructor
 @Service
@@ -24,6 +22,26 @@ public class UserBusinessRules {
                     USERNAME_ALREADY_EXISTS.getCode(),
                     USERNAME_ALREADY_EXISTS.getHttpStatus(),
                     USERNAME_ALREADY_EXISTS.getDescription()
+            );
+        }
+    }
+
+    public void checkIfMailExists(String email) {
+        if (this.userRepository.existsByEmail(email)) {
+            throw new BusinessException(
+                    EMAIL_ALREADY_EXISTS.getCode(),
+                    EMAIL_ALREADY_EXISTS.getHttpStatus(),
+                    EMAIL_ALREADY_EXISTS.getDescription()
+            );
+        }
+    }
+
+    public void checkIfPhoneNumberExists(String phoneNumber) {
+        if (this.userRepository.existsByPhoneNumber(phoneNumber)) {
+            throw new BusinessException(
+                    PHONE_NUMBER_ALREADY_EXISTS.getCode(),
+                    PHONE_NUMBER_ALREADY_EXISTS.getHttpStatus(),
+                    PHONE_NUMBER_ALREADY_EXISTS.getDescription()
             );
         }
     }

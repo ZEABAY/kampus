@@ -51,7 +51,7 @@ public class User implements UserDetails {
     @Column(name = USER_COLUMN_LAST_NAME, nullable = false)
     private String lastName;
 
-    @Column(name = USER_COLUMN_PHONE_NUMBER, nullable = false)
+    @Column(name = USER_COLUMN_PHONE_NUMBER, unique = true, nullable = false)
     private String phoneNumber;
 
     @Column(name = USER_COLUMN_BIRTH_DATE)

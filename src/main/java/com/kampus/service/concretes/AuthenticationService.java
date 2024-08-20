@@ -4,10 +4,10 @@ import com.kampus.core.config.JwtService;
 import com.kampus.core.utilities.mappers.ModelMapperService;
 import com.kampus.dataAccess.UserRepository;
 import com.kampus.entities.User;
-import com.kampus.service.responses.authentication.AuthenticationResponse;
-import com.kampus.service.rules.UserBusinessRules;
 import com.kampus.service.requests.authentication.AuthenticationRequest;
 import com.kampus.service.requests.authentication.RegisterRequest;
+import com.kampus.service.responses.authentication.AuthenticationResponse;
+import com.kampus.service.rules.UserBusinessRules;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +27,10 @@ public class AuthenticationService {
         User user = this.modelMapperService.forRequest().map(registerRequest, User.class);
 
         userBusinessRules.encodePassword(user);
+        userBusinessRules.checkIfUsernameExists(user.getUsername());
+        userBusinessRules.checkIfMailExists(user.getEmail());
+        userBusinessRules.checkIfPhoneNumberExists(user.getPhoneNumber());
+
 
         userRepository.save(user);
 
