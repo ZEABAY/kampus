@@ -676,7 +676,7 @@ public class EntityConstants {
 
     public static final String USER_COMPLAIN_REPORT_IDX_REPORTER_USER = "idx_reporter_user";
     public static final String USER_COMPLAIN_REPORT_IDX_REPORTED_USER = "idx_reported_user";
-    public static final String USER_COMPLAIN_REPORT_IDX_CREATED_AT = "idx_story_created_at";
+    public static final String USER_COMPLAIN_REPORT_IDX_CREATED_AT = "idx_user_complain_created_at";
 
     /**
      * SEQUENCE

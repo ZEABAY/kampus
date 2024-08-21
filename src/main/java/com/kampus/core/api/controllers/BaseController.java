@@ -1,23 +1,40 @@
 package com.kampus.core.api.controllers;
 
+import com.kampus.core.utilities.exceptions.BusinessException;
+import com.kampus.service.responses.authentication.AuthenticationResponse;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface BaseController<CreateReq, IdType, GetByIdRes, GetAllRes, UpdateReq> {
+import static com.kampus.core.handler.BusinessErrorCodes.NO_CODE;
 
-    //@PostMapping("/create")
-    void create(/*@RequestBody*/CreateReq req);
+public abstract class BaseController<CreateReq, IdType, GetByIdRes, GetAllRes, UpdateReq> {
 
-    //@GetMapping("/getbyid")
-    GetByIdRes getById(IdType id);
+    protected <T> ResponseEntity<T> handleUnsupportedOperation() {
+        throw new BusinessException(
+                NO_CODE.getCode(),
+                NO_CODE.getHttpStatus(),
+                NO_CODE.getDescription()
+        );
+    }
 
-    //@GetMapping("/getall")
-    List<GetAllRes> getAll();
+    public ResponseEntity<Void> create(CreateReq req) {
+        return handleUnsupportedOperation();
+    }
 
-    //@PutMapping("/update")
-    void update(UpdateReq req);
+    public ResponseEntity<GetByIdRes> getById(IdType id) {
+        return handleUnsupportedOperation();
+    }
 
-    //@DeleteMapping("/delete")
-    void delete(IdType id);
+    public ResponseEntity<List<GetAllRes>> getAll() {
+        return handleUnsupportedOperation();
+    }
+
+    public ResponseEntity<AuthenticationResponse> update(UpdateReq updateRequest) {
+        return handleUnsupportedOperation();
+    }
+
+    public ResponseEntity<Void> delete(IdType id) {
+        return handleUnsupportedOperation();
+    }
 }
-

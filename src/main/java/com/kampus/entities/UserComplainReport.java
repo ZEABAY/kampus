@@ -36,6 +36,7 @@ public class UserComplainReport {
     @Column(name = USER_COMPLAIN_REPORT_COLUMN_REPORTABLE_ID, nullable = false)
     private Long reportableId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = USER_COMPLAIN_REPORT_COLUMN_REPORTED_CONTENT, nullable = false)
     private ReportType reportedContent;
 

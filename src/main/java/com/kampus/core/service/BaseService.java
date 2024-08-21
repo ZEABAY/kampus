@@ -1,17 +1,42 @@
 package com.kampus.core.service;
 
+import com.kampus.core.utilities.exceptions.BusinessException;
+import com.kampus.service.responses.authentication.AuthenticationResponse;
+
 import java.util.List;
 
-public interface BaseService<CreateReq, IdType, GetByIdRes, GetAllRes, UpdateReq> {
+import static com.kampus.core.handler.BusinessErrorCodes.NO_CODE;
 
-    void add(CreateReq createReq);
+public abstract class BaseService<CreateReq, IdType, GetByIdRes, GetAllRes, UpdateReq> {
 
-    GetByIdRes getById(IdType id);
+    protected void handleUnsupportedOperation() {
+        throw new BusinessException(
+                NO_CODE.getCode(),
+                NO_CODE.getHttpStatus(),
+                NO_CODE.getDescription()
+        );
+    }
 
-    List<GetAllRes> getAll();
+    public void add(CreateReq req) {
+        handleUnsupportedOperation();
+    }
 
-    void update(UpdateReq updateRequest);
+    public GetByIdRes getById(IdType id) {
+        handleUnsupportedOperation();
+        return null;
+    }
 
-    void delete(IdType id);
+    public List<GetAllRes> getAll() {
+        handleUnsupportedOperation();
+        return null;
+    }
 
+    public AuthenticationResponse update(String token, UpdateReq req) {
+        handleUnsupportedOperation();
+        return null;
+    }
+
+    public void delete(IdType id) {
+        handleUnsupportedOperation();
+    }
 }
