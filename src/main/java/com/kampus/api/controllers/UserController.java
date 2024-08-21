@@ -1,69 +1,36 @@
 package com.kampus.api.controllers;
 
 import com.kampus.core.api.controllers.BaseController;
-import com.kampus.core.utilities.exceptions.BusinessException;
 import com.kampus.service.concretes.UserService;
-import com.kampus.service.requests.userRequests.CreateUserRequest;
 import com.kampus.service.requests.userRequests.UpdateUserRequest;
+import com.kampus.service.responses.authentication.AuthenticationResponse;
 import com.kampus.service.responses.userResponses.GetAllUsersResponse;
 import com.kampus.service.responses.userResponses.GetUserByIdResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.kampus.core.handler.BusinessErrorCodes.NO_CODE;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/user")
-public class UserController implements BaseController<CreateUserRequest, Long, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
+public class UserController extends BaseController<Void, Long, GetUserByIdResponse, GetAllUsersResponse, UpdateUserRequest> {
     private final UserService userService;
 
     @Override
-    public void create(CreateUserRequest createUserRequest) {
-        throw new BusinessException(
-                NO_CODE.getCode(),
-                NO_CODE.getHttpStatus(),
-                NO_CODE.getDescription()
-        );
-    }
-
-    @Override
-    @GetMapping("/{id}")
-    public GetUserByIdResponse getById(@PathVariable() Long id) {
-        throw new BusinessException(
-                NO_CODE.getCode(),
-                NO_CODE.getHttpStatus(),
-                NO_CODE.getDescription()
-        );
-    }
-
-    @Override
     @GetMapping("/getAll")
-    public List<GetAllUsersResponse> getAll() {
-        return userService.getAll();
+    public ResponseEntity<List<GetAllUsersResponse>> getAll() {
+        return ResponseEntity.ok(userService.getAll());
     }
 
     @Override
+    // Kullanıcıyı güncelleyen endpoint
     @PutMapping("/update")
-    public void update(@RequestBody() UpdateUserRequest updateUserRequest) {
-        throw new BusinessException(
-                NO_CODE.getCode(),
-                NO_CODE.getHttpStatus(),
-                NO_CODE.getDescription()
-        );
+    public ResponseEntity<AuthenticationResponse> update(@RequestBody UpdateUserRequest updateUserRequest) {
+        AuthenticationResponse response = userService.update(updateUserRequest);
+        return ResponseEntity.ok(response);
     }
 
-    @Override
-    @DeleteMapping("delete/{id}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@PathVariable Long id) {
-        throw new BusinessException(
-                NO_CODE.getCode(),
-                NO_CODE.getHttpStatus(),
-                NO_CODE.getDescription()
-        );
-    }
+
 }

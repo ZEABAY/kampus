@@ -1,6 +1,5 @@
 package com.kampus.service.requests.authentication;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -23,8 +22,8 @@ public class RegisterRequest {
     @Size(min = 8, message = "Password should be at least 8 characters long")
     private String password;
 
-    @Email(message = "Email is not well formatted")
     @NotBlank(message = "Email is required")
+    @Pattern(regexp = "^\\d{11}@ogr\\.inonu\\.edu\\.tr$")
     private String email;
 
     @NotBlank(message = "First Name is required")
