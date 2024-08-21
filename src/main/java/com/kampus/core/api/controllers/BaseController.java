@@ -30,7 +30,7 @@ public abstract class BaseController<CreateReq, IdType, GetByIdRes, GetAllRes, U
         return handleUnsupportedOperation();
     }
 
-    public ResponseEntity<AuthenticationResponse> update(UpdateReq req) {
+    public ResponseEntity<AuthenticationResponse> update(UpdateReq updateRequest) {
         return handleUnsupportedOperation();
     }
 

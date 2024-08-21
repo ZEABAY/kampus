@@ -31,7 +31,7 @@ public abstract class BaseService<CreateReq, IdType, GetByIdRes, GetAllRes, Upda
         return null;
     }
 
-    public AuthenticationResponse update(UpdateReq req) {
+    public AuthenticationResponse update(String token, UpdateReq req) {
         handleUnsupportedOperation();
         return null;
     }

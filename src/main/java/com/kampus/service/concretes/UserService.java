@@ -13,6 +13,7 @@ import com.kampus.service.responses.userResponses.GetUserByIdResponse;
 import com.kampus.service.rules.UserBusinessRules;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class UserService extends BaseService<Void, Long, GetUserByIdResponse, Ge
     private final ModelMapperService modelMapperService;
     private final UserBusinessRules userBusinessRules;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public GetUserByIdResponse getById(Long id) {
@@ -52,9 +54,9 @@ public class UserService extends BaseService<Void, Long, GetUserByIdResponse, Ge
     // Kullanıcıyı güncellenmiş bilgilerle güncelle
     @Override
     @Transactional
-    public AuthenticationResponse update(UpdateUserRequest updateRequest) {
+    public AuthenticationResponse update(String username, UpdateUserRequest updateRequest) {
         // Kullanıcıyı mevcut username ile bul
-        User user = this.userRepository.findByUsername(updateRequest.getCurrentUsername())
+        User user = this.userRepository.findByUsername(username)
                 .orElseThrow(() -> new BusinessException(
                         USER_NOT_FOUND.getCode(),
                         USER_NOT_FOUND.getHttpStatus(),
@@ -68,8 +70,10 @@ public class UserService extends BaseService<Void, Long, GetUserByIdResponse, Ge
 
         // Güncellenmiş alanları ayarla
         updateUserField(user::setUsername, updateRequest.getUsername());
-        updateUserField(user::setPassword, updateRequest.getPassword());
         updateUserField(user::setEmail, updateRequest.getEmail());
+        if (updateRequest.getPassword() != null) {
+            updateUserField(user::setPassword, passwordEncoder.encode(updateRequest.getPassword()));
+        }
         updateUserField(user::setFirstName, updateRequest.getFirstName());
         updateUserField(user::setLastName, updateRequest.getLastName());
         updateUserField(user::setPhoneNumber, updateRequest.getPhoneNumber());
@@ -77,11 +81,11 @@ public class UserService extends BaseService<Void, Long, GetUserByIdResponse, Ge
         // Güncellenmiş kullanıcıyı veritabanına kaydet
         this.userRepository.save(user);
 
-        // JWT token oluştur
-        String jwtToken = jwtService.generateToken(user);
+        // Yeni JWT token oluştur
+        String newJwtToken = jwtService.generateToken(user);
 
         // Yanıtı döndür
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().token(newJwtToken).build();
     }
 
 

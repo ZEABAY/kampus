@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateUserRequest {
-    @Size(min = 3, max = 16, message = "Username must be between 3 and 16 characters")
-    private String currentUsername;
 
     @Size(min = 3, max = 16, message = "Username must be between 3 and 16 characters")
     private String username;

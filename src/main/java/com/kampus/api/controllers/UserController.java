@@ -8,6 +8,7 @@ import com.kampus.service.responses.userResponses.GetAllUsersResponse;
 import com.kampus.service.responses.userResponses.GetUserByIdResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +26,15 @@ public class UserController extends BaseController<Void, Long, GetUserByIdRespon
     }
 
     @Override
-    // Kullanıcıyı güncelleyen endpoint
     @PutMapping("/update")
-    public ResponseEntity<AuthenticationResponse> update(@RequestBody UpdateUserRequest updateUserRequest) {
-        AuthenticationResponse response = userService.update(updateUserRequest);
+    public ResponseEntity<AuthenticationResponse> update(
+            @RequestBody UpdateUserRequest updateUserRequest
+    ) {
+
+        // isteği atan kullanıcı
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        AuthenticationResponse response = userService.update(username, updateUserRequest);
         return ResponseEntity.ok(response);
     }
 
